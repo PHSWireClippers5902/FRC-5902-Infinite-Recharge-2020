@@ -61,7 +61,6 @@ public class DriveTrain extends Subsystem {
       ******************************************************************* somethin big goes on here */
 
 
-
       double rightTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kRight);
       double leftTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kLeft);
       double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
