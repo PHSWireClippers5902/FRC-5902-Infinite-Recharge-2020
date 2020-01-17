@@ -75,11 +75,11 @@ public class DriveTrain extends Subsystem {
 
         return;
 
-      } else if (rightTriggerValue > 0) {
+      } else if (rightTriggerValue > 0.2) {
 
         stickY = rightTriggerValue;
 
-      } else if (leftTriggerValue > 0) {
+      } else if (leftTriggerValue > 0.2) {
 
         stickY = -1 * leftTriggerValue;
 
@@ -89,6 +89,16 @@ public class DriveTrain extends Subsystem {
       arcadeDrive(stickY, stickX, driveSpeed); 
 
     
+  }
+
+  public void dpadTurn(){
+    int pov = m_oi.getXbox().getPOV();
+
+    if (pov == 90){
+      arcadeDrive(0, 1, 0.75);
+    }else if (pov == 270){
+      arcadeDrive(0, 1, 0.75);
+    }
   }
 
 

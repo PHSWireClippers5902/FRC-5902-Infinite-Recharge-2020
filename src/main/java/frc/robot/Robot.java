@@ -103,8 +103,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
+    driveTrain.dpadTurn();
     driveTrain.driveWithXbox();
-    
+
   }
 
 
