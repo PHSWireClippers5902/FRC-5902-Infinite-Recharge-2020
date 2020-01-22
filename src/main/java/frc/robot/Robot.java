@@ -6,10 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 // Why was 6 afraid of 9? (scroll to bottom for answer!!!)
-
+//Casey Gladu 
 package frc.robot;
 
-// Tom Riddle
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
