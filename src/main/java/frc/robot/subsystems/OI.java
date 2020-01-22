@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class OI extends SubsystemBase {
   /**
@@ -27,14 +26,7 @@ public class OI extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public double[] getStickValues(Hand hand){
-    double x = xbox.getX(hand);
-    double y = xbox.getY(hand);
-
-    double[] returnArray = {x, y};
-    return returnArray;
-  }
-
+ 
   public XboxController getXbox(){
     return xbox;
   }
