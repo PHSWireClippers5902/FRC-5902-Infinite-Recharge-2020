@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
-  public final Servo zero = RobotMap.zero;
+  public final Servo zeroServo = RobotMap.zeroServo;
 
 
   /**
@@ -46,6 +46,8 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     driveTrain = new DriveTrain();
     ServoControl = new ServoControl();
+    RobotMap.zeroServo.setAngle(100);
+
 
 
   }
@@ -112,7 +114,6 @@ public class Robot extends TimedRobot {
     
   }
 
-  RobotMap.zero.setAngle(100);
   /**
    * This function is called periodically during test mode.
    */
