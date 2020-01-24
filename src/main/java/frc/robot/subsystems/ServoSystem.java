@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import frc.robot.commands.ServoControl;
 
 
 /**
@@ -23,9 +23,7 @@ public class ServoSystem extends Subsystem {
   
   @Override
   protected void initDefaultCommand() {
-    // setDefaultCommand(new ArcadeDrive());
-    
-
+    setDefaultCommand(new ServoControl(0));
   }
 
   
