@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+
 
 
 /**
  * Manages the movement of Lead and Following motor controllers
  */
-public class ServoControl extends Subsystem {
+public class ServoSystem extends Subsystem {
 
   OI m_oi = new OI();
 
