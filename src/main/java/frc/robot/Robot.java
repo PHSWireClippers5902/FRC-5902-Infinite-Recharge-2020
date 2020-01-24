@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Servo;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+  public final Servo zero = RobotMap.zero;
 
 
   /**
@@ -43,6 +45,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    ServoControl = new ServoControl();
+
 
   }
 
@@ -108,7 +112,7 @@ public class Robot extends TimedRobot {
     
   }
 
-
+  RobotMap.zero.setAngle(100);
   /**
    * This function is called periodically during test mode.
    */
