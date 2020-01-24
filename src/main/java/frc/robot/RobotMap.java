@@ -11,7 +11,7 @@ public class RobotMap {
     public static WPI_VictorSPX driveFollowLeft = new WPI_VictorSPX(3);
     public static WPI_TalonSRX driveMainRight = new WPI_TalonSRX(2);
     public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
-    public static Servo zero;
+    public static Servo zeroServo;
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
 
     public static void init() {
@@ -23,7 +23,8 @@ public class RobotMap {
         driveMainRight.configOpenloopRamp(1);
         driveFollowLeft.configOpenloopRamp(1);
         driveFollowRight.configOpenloopRamp(1);
+        zeroServo = new Servo(0);
     }
 
-    zero = new Servo(1);
+  
 }

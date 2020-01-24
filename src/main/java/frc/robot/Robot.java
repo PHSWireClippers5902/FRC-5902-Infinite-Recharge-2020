@@ -30,8 +30,9 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
+  public static ServoSystem servoSystem;
   public static OI oi;
-  public final Servo zero = RobotMap.zero;
+  public final Servo zeroServo = RobotMap.zeroServo;
 
 
   /**
@@ -45,9 +46,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
-    ServoControl = new ServoControl();
-
-
+    servoSystem = new ServoSystem();
+    RobotMap.zeroServo.setAngle(100);
   }
 
   /**
@@ -112,7 +112,6 @@ public class Robot extends TimedRobot {
     
   }
 
-  RobotMap.zero.setAngle(100);
   /**
    * This function is called periodically during test mode.
    */
