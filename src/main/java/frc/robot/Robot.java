@@ -46,8 +46,16 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+<<<<<<< HEAD
     servoSystem = new ServoSystem();
     RobotMap.zeroServo.setAngle(100);
+=======
+    ServoControl = new ServoControl();
+    RobotMap.zeroServo.setAngle(100);
+
+
+
+>>>>>>> 5c533add4bc2f3258f0f4e50819f5c222bb129d0
   }
 
   /**
