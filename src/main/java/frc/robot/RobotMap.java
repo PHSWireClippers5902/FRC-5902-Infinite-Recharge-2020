@@ -4,14 +4,14 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
+import edu.wpi.first.wpilibj.Servo;
 
 public class RobotMap {
     public static WPI_TalonSRX driveMainLeft = new WPI_TalonSRX(1);
     public static WPI_VictorSPX driveFollowLeft = new WPI_VictorSPX(3);
     public static WPI_TalonSRX driveMainRight = new WPI_TalonSRX(2);
     public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
-
+    public static Servo zero;
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
 
     public static void init() {
@@ -24,4 +24,6 @@ public class RobotMap {
         driveFollowLeft.configOpenloopRamp(1);
         driveFollowRight.configOpenloopRamp(1);
     }
+
+    zero = new Servo(1);
 }
