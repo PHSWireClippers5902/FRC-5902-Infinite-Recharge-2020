@@ -49,8 +49,13 @@ public class DriveTrain extends Subsystem {
     RobotMap.diffDrive.tankDrive(0, 0);
   }
 
+  public double getDriveSpeed() {
+    return driveSpeed; 
+  }
 
-
+  public double getTurnSensitivity() {
+    return turnSensitivity; 
+  }
   
   public void driveWithXbox() {
     if (m_oi.getXbox() == null) {
@@ -65,7 +70,7 @@ public class DriveTrain extends Subsystem {
       double leftTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kLeft);
       double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
       double stickX = turnSensitivity * leftStickXValue;
-      double stickY = 0; //casey's phone number: 603-957-8532
+      double stickY = 0; 
 
       if (rightTriggerValue > 0 && leftTriggerValue > 0) {
         arcadeDrive(0, 0, 0);
