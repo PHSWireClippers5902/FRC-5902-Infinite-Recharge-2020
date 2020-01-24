@@ -43,7 +43,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
-
   }
 
   /**
@@ -58,6 +57,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+    // Smart Dashboard Numbers
+
+    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
+    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
+    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
