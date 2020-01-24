@@ -18,7 +18,7 @@ public class ServoControl extends Command {
   
   public ServoControl(double setAngle) {
     // Use addRequirements() here to declare subsystem dependencies.
-    //requires(Robot.servoSystem);
+    requires(Robot.servoSystem);
     this.ourAngle = setAngle;
   }
 

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
+import frc.robot.commands.*;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 
@@ -25,14 +26,16 @@ import edu.wpi.first.wpilibj.Servo;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static OI oi;
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static ServoSystem servoSystem;
-  public static OI oi;
   public final Servo zeroServo = RobotMap.zeroServo;
+
+
 
 
   /**
@@ -44,10 +47,13 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    RobotMap.init();
     driveTrain = new DriveTrain();
+    System.out.println("Robot Init");
     servoSystem = new ServoSystem();
-    RobotMap.zeroServo.setAngle(100);
+    //RobotMap.zeroServo.setAngle(100);
+    RobotMap.init();
+    oi = new OI();
+
   }
 
   /**
@@ -62,6 +68,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+  SmartDashboard.putNumber("Our Angle", RobotMap.zeroServo.getAngle());
+  SmartDashboard.putNumber("Working?", 5);
+
   }
 
   /**
