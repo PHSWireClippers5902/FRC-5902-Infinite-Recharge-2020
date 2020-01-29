@@ -5,10 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+// Why was 6 afraid of 9? (scroll to bottom for answer!!!)
+//Casey Gladu 
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -95,6 +96,8 @@ public class Robot extends TimedRobot {
           break;
         }
     }
+    
+  
   }
 
   /**
@@ -116,3 +119,4 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 }
+// Because 9 8 10.

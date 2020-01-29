@@ -29,11 +29,11 @@ public class DriveTrain extends Subsystem {
   
   @Override
   protected void initDefaultCommand() {
+    //Setting motor control followers
     RobotMap.driveFollowLeft.follow(RobotMap.driveMainLeft);
     RobotMap.driveFollowRight.follow(RobotMap.driveMainRight);
-    setDefaultCommand(new ArcadeDrive());
-    
 
+    setDefaultCommand(new ArcadeDrive());
   }
 
   public void arcadeDrive(double stickY_Axis, double stickX_Axis, double speed) {
@@ -49,8 +49,13 @@ public class DriveTrain extends Subsystem {
     RobotMap.diffDrive.tankDrive(0, 0);
   }
 
+  public double getDriveSpeed() {
+    return driveSpeed; 
+  }
 
-
+  public double getTurnSensitivity() {
+    return turnSensitivity; 
+  }
   
   public void driveWithXbox() {
     if (m_oi.getXbox() == null) {
@@ -58,22 +63,17 @@ public class DriveTrain extends Subsystem {
     }
       /****************************************************************** 
       Right trigger moves robot forward, left moves it backward, left stick makes it turn, 
-      b makes it turn right really fast, x makes it turn left really fast, y adds speed, a 
-      removes speed
-      
       ******************************************************************* somethin big goes on here */
-
 
 
       double rightTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kRight);
       double leftTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kLeft);
       double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
       double stickX = turnSensitivity * leftStickXValue;
-      double stickY = 0; //casey's phone number: 603-957-8532
+      double stickY = 0; 
 
       if (rightTriggerValue > 0 && leftTriggerValue > 0) {
-
-        return;
+        arcadeDrive(0, 0, 0);
 
       } else if (rightTriggerValue > 0.2) {
 
