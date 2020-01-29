@@ -15,7 +15,7 @@ public class RobotMap {
     public static WPI_TalonSRX driveMainRight = new WPI_TalonSRX(2);
     public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
 
-    public static WPI_VictorSPX flyWheel = new WPI_VictorSPX(5);
+    public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(5);
 
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
 
@@ -28,6 +28,7 @@ public class RobotMap {
         driveMainRight.configOpenloopRamp(1);
         driveFollowLeft.configOpenloopRamp(1);
         driveFollowRight.configOpenloopRamp(1);
+        flyWheel.configOpenloopRamp(1);
 
        
     }

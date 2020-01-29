@@ -21,12 +21,7 @@ public class FlyWheelOutput extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    boolean xboxB = Robot.oi.getXbox().getBButton();
-    if (xboxB){  
-    Robot.flyWheel.Output(0.5);
-    } else {
-    Robot.flyWheel.Output(0);
-    }
+    
   
   }
 
