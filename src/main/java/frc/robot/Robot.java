@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static OI oi;
   public static FlyWheel flyWheel;
+  public static Climb climb;
 
 
   /**
@@ -47,7 +48,7 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     driveTrain = new DriveTrain();
     flyWheel = new FlyWheel();
-
+    climb = new Climb();
   }
 
   /**
@@ -110,6 +111,7 @@ public class Robot extends TimedRobot {
 
     driveTrain.driveWithXbox();
     flyWheel.moveWithB();
+    climb.Climbing();
     
   }
 
