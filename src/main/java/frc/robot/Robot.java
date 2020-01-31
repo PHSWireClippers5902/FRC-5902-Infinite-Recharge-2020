@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
-
+import frc.robot.subsystems.pneumaticSystem;
+import edu.wpi.first.wpilibj.Ultrasonic;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -30,7 +31,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
-
+  public static pneumaticSystem pneumaticSystem;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -43,6 +44,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    pneumaticSystem = new pneumaticSystem();
+    RobotMap.compressor.start();
+
 
   }
 
