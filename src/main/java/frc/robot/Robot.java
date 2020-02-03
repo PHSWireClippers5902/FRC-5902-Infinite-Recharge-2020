@@ -45,8 +45,6 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     driveTrain = new DriveTrain();
     pneumaticSystem = new pneumaticSystem();
-    RobotMap.compressor.start();
-
 
   }
 
@@ -62,6 +60,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
+    SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
+    SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
+
   }
 
   /**
@@ -102,6 +104,12 @@ public class Robot extends TimedRobot {
     }
   }
 
+  @Override
+  public void teleopInit() {
+    RobotMap.compressor.start();
+    
+  }
+
   /**
    * This function is called periodically during operator control.
    */
@@ -109,6 +117,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     driveTrain.driveWithXbox();
+    oi.buttoncheck();
     
   }
 

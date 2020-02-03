@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.commands.backPistonToggle;
 import frc.robot.commands.frontPistonToggle;
+import frc.robot.Robot;
 import frc.robot.commands.allPistonsOff;
 
 public class OI extends SubsystemBase {
@@ -21,6 +22,8 @@ public class OI extends SubsystemBase {
    */
   public static XboxController xbox = new XboxController(0);
   public static Joystick joystick;
+  public static OI s_oi = new OI();
+
   
   public OI() {
     System.out.println(xbox.toString());
@@ -36,6 +39,17 @@ public class OI extends SubsystemBase {
 
     double[] returnArray = {x, y};
     return returnArray;
+  }
+
+  public void buttoncheck(){
+    if( s_oi.getXbox().getAButton()){
+      Robot.pneumaticSystem.onFrontPistons();
+    }else if( s_oi.getXbox().getBButton()){
+      Robot.pneumaticSystem.onBackPistons();
+    }else if( s_oi.getXbox().getBumper(Hand.kRight)){
+      Robot.pneumaticSystem.offAllPistons();
+    }
+
   }
 
   public XboxController getXbox(){
