@@ -13,6 +13,7 @@ import frc.robot.RobotMap;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import frc.robot.Robot;
 
 
 /**
@@ -38,11 +39,13 @@ public class DriveTrain extends Subsystem {
 
   public void arcadeDrive(double stickY_Axis, double stickX_Axis, double speed) {
     RobotMap.diffDrive.arcadeDrive(stickY_Axis * speed, stickX_Axis * speed);
+   // System.out.println(stickY_Axis + " " + stickX_Axis + " " + speed);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
   }
 
   public void stop() {
@@ -79,9 +82,15 @@ public class DriveTrain extends Subsystem {
         stickY = -1 * leftTriggerValue;
 
       } 
-
       System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
-      arcadeDrive(stickY, stickX, driveSpeed); 
+      if (Robot.Auto){
+        arcadeDrive(0.8, 0, 0.8);
+      } else {
+        arcadeDrive(stickY, stickX, driveSpeed);
+      }
+
+       
+            
 
     
   }

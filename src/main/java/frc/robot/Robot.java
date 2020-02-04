@@ -10,11 +10,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import frc.robot.commands.ArcadeDrive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +32,9 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+  private double startTime;
+  public static boolean Auto;
+
 
 
   /**
@@ -58,11 +63,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    // Smart Dashboard Numbers
-
-    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
-    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
-    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
@@ -80,6 +80,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
+    startTime = Timer.getFPGATimestamp();
   }
 
   /**
@@ -87,7 +88,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
+    /*switch (m_autoSelected) {
       case kCustomAuto:
         RobotMap.diffDrive.arcadeDrive(oi.getXbox().getY(Hand.kLeft), oi.getXbox().getX(Hand.kLeft));
         break;
@@ -101,9 +102,16 @@ public class Robot extends TimedRobot {
           break;
         }
     }
+    */
+   /* double time = Timer.getFPGATimestamp();
+    driveTrain.driveWithXbox();
+    if (time - startTime < 35){
     
+    } else {
+
+    }
   
-  }
+  */ }
 
   /**
    * This function is called periodically during operator control.
@@ -112,7 +120,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     driveTrain.driveWithXbox();
-    
+    Auto = false;
   }
 
 
