@@ -60,9 +60,9 @@ public class Robot extends TimedRobot {
 
     // Smart Dashboard Numbers
 
-    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
-    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
-    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
+    //SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
+    //SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
+    //SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
@@ -112,6 +112,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     driveTrain.driveWithXbox();
+
+    //SERVO THING
+    driveTrain.stangle(69);
     
   }
 
