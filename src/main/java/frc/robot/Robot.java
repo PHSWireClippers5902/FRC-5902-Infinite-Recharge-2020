@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +32,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+  public static lightSystem lightSystem;
+
 
 
   /**
@@ -43,6 +47,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    lightSystem = new lightSystem();
+    Robot.lightSystem.getAllianceColor();
+
   }
 
   /**
@@ -60,9 +67,6 @@ public class Robot extends TimedRobot {
 
     // Smart Dashboard Numbers
 
-    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
-    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
-    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
