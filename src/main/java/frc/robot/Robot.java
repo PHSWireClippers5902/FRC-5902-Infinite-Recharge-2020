@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     driveTrain = new DriveTrain();
     lightSystem = new lightSystem();
-    Robot.lightSystem.getAllianceColor();
 
   }
 
@@ -84,6 +83,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
+    Robot.lightSystem.getAllianceColor();
   }
 
   /**
@@ -107,6 +107,12 @@ public class Robot extends TimedRobot {
     }
     
   
+  }
+
+  @Override
+  public void teleopInit() {
+    Robot.lightSystem.getAllianceColor();
+
   }
 
   /**
