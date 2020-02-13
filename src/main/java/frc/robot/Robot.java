@@ -32,11 +32,14 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+  //Auto variables
   private double startTime;
-  public static boolean Auto;
-
-
-
+  private int location;
+  private int exitpoint;
+  private int entrypoint;
+  private double currentPosition;
+  private double startingPosition;
+ 
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -48,6 +51,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    startingPosition = RobotMap.driveMainLeft.getSelectedSensorPosition();
   }
 
   /**
@@ -81,6 +85,10 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
     startTime = Timer.getFPGATimestamp();
+    location = 1; //set start positions: Values 1, 2, 3
+    exitpoint = 2; //set how to leave
+    entrypoint = 2; //set how to enter
+    
   }
 
   /**
@@ -88,30 +96,93 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-    /*switch (m_autoSelected) {
-      case kCustomAuto:
-        RobotMap.diffDrive.arcadeDrive(oi.getXbox().getY(Hand.kLeft), oi.getXbox().getX(Hand.kLeft));
-        break;
-      case kDefaultAuto:
-      default:
-        if (oi.getXbox() != null){
-          RobotMap.diffDrive.arcadeDrive(oi.getXbox().getRawAxis(1), 0);
-          break;
-        } else{
-          RobotMap.diffDrive.arcadeDrive(0.1, 0);
-          break;
-        }
-    }
-    */
-   /* double time = Timer.getFPGATimestamp();
-    driveTrain.driveWithXbox();
-    if (time - startTime < 35){
+    double time = Timer.getFPGATimestamp(); //get current time to compare to the time when the robot was first initiated
+    System.out.println(time - startTime);  //output the difference between when the computer enabled and the time when this method is called. 
+    if (location == 1){//code from postion 1
+      if(exitpoint == 1){
+          if (time - startTime < 1){//turn 180
+            RobotMap.diffDrive.arcadeDrive(0.0, 0.62, true);
+          }else if(time - startTime < 2.8){//foward 9 ish ft
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
+          }else if(time - startTime < 5){//shoot balls
+            //FlyWheel.flyWheel.set(0.5);
+          }else if(time - startTime < 7){//back straight out
+            RobotMap.diffDrive.arcadeDrive(-0.7, 0, true);
+          }
+       }else{
+          if (time - startTime < 1){//turn 180
+            RobotMap.diffDrive.arcadeDrive(0.0, 0.62, true);
+          }else if(time - startTime < 2.8){//foward 9 ish ft
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
+          }else if(time - startTime < 5){//shoot balls
+            //FlyWheel.flyWheel.set(0.5);
+          }else if(time - startTime < 5.5){//turn left
+              RobotMap.diffDrive.arcadeDrive(0, -0.57, true);
+          }else if(time - startTime < 6.8){//move foward 6-7 ft
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
+          }else if(time - startTime < 7.3){//turn left 90
+            RobotMap.diffDrive.arcadeDrive(0, -0.67, true);
+          }else if(time - startTime < 9.3){//move foward
+            RobotMap.diffDrive.arcadeDrive(0.75, 0, true);
+          }
+       }//end exitpoint
     
-    } else {
+      }else if (location == 2){
+        if(entrypoint == 1){
+          if (time - startTime < 1){//turn 180
+            RobotMap.diffDrive.arcadeDrive(0.0, 0.62, true);
+          }else if(time - startTime < 2.8){//foward 9 ish ft
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
+          }else if(time - startTime < 3.3){//turn right
+            RobotMap.diffDrive.arcadeDrive(0, 0.7, true);
+          }else if(time - startTime >= 5 && time - startTime <= 6.5){//wait then foward
+            RobotMap.diffDrive.arcadeDrive(0.65, 0, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 7){//turn left
+            RobotMap.diffDrive.arcadeDrive(0, -0.65, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 9.8){//shoot balls
+            //FlyWheel.flyWheel.set(0.5);
+          }else if(time - startTime >= 5 && time - startTime <= 10.3){//turn left
+            RobotMap.diffDrive.arcadeDrive(0, -0.6, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 11.8){//foward
+            RobotMap.diffDrive.arcadeDrive(0.65, 0, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 12.3){//turn left
+            RobotMap.diffDrive.arcadeDrive(0, -0.65, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 14.1){//foward
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true); 
+          }
+        }else if (entrypoint == 2){
+          if (time - startTime < 0.5){//turn left
+            RobotMap.diffDrive.arcadeDrive(0.0, -0.62, true);
+          }else if(time - startTime >= 5 && time - startTime <= 6.5){//wait then foward
+            RobotMap.diffDrive.arcadeDrive(0.65, 0, true); 
+          }else if(time - startTime >= 5 && time-startTime <= 7){//turn left
+            RobotMap.diffDrive.arcadeDrive(0.0, -0.62, true);
+          }else if(time - startTime >= 5 && time-startTime <= 8.8){//turn left
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
+          }else if(time - startTime >= 5 && time - startTime <= 9.8){//shoot balls
+            //FlyWheel.flyWheel.set(0.5);
+          }else if(time - startTime >= 5 && time - startTime <= 10.3){//turn left
+            RobotMap.diffDrive.arcadeDrive(0, -0.6, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 11.8){//foward
+            RobotMap.diffDrive.arcadeDrive(0.65, 0, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 12.3){//turn left
+            RobotMap.diffDrive.arcadeDrive(0, -0.65, true); 
+          }else if(time - startTime >= 5 && time - startTime <= 14.1){//foward
+            RobotMap.diffDrive.arcadeDrive(0.7, 0, true); 
+          }
+        }
+      }else if(location == 3){
+          if (time - startTime < 0.5){//turn left
+            RobotMap.diffDrive.arcadeDrive(0.0, -0.62, true);
+          }else if(time - startTime >= 5 && time - startTime <= 6.5){//wait then foward
+            RobotMap.diffDrive.arcadeDrive(0.65, 0, true); 
+          }
 
-    }
-  
-  */ }
+
+      }
+
+
+  } 
 
   /**
    * This function is called periodically during operator control.
@@ -120,7 +191,14 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     driveTrain.driveWithXbox();
-    Auto = false;
+   // System.out.println("Sensor Vel:" + RobotMap.driveMainLeft.getSelectedSensorVelocity());
+    //System.out.println("Sensor Pos:" + RobotMap.driveMainLeft.getSelectedSensorPosition());
+    currentPosition = RobotMap.driveMainLeft.getSelectedSensorPosition();
+    //System.out.println("Rotation" + (currentPosition - startingPosition));
+    double totalDistanceL = (currentPosition - startingPosition)/4096 * 18.85714285; 
+    int myfeet = (int)(totalDistanceL/12);
+    System.out.println("distance" + (myfeet));
+
   }
 
 

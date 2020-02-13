@@ -82,12 +82,10 @@ public class DriveTrain extends Subsystem {
         stickY = -1 * leftTriggerValue;
 
       } 
-      System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
-      if (Robot.Auto){
-        arcadeDrive(0.8, 0, 0.8);
-      } else {
-        arcadeDrive(stickY, stickX, driveSpeed);
-      }
+      //System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
+      
+      arcadeDrive(stickY, stickX, driveSpeed);
+      
 
        
             
