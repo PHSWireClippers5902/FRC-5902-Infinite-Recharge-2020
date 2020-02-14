@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.pneumaticSystem;
 import edu.wpi.first.wpilibj.Ultrasonic;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -48,11 +48,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
-    lightSystem = new lightSystem();
+     lightSystem = new lightSystem();
     pneumaticSystem = new pneumaticSystem();
     oi = new OI();
-
-
+}
+  @Override
+  public void disabledInit(){
   }
 
   /**
@@ -116,8 +117,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+
     Robot.lightSystem.getAllianceColor();
     RobotMap.compressor.start();
+
   }
 
   /**
@@ -126,9 +129,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveTrain.driveWithXbox();
+
     //SERVO THING
     driveTrain.stangle(69);
     oi.buttoncheck();
+
   }
 
 
