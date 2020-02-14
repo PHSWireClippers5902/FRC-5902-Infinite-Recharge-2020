@@ -67,7 +67,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
     SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
     SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
-
   }
 
   /**
@@ -106,6 +105,8 @@ public class Robot extends TimedRobot {
           break;
         }
     }
+    
+  
   }
 
   @Override
