@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.pneumaticSystem;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -34,7 +35,6 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static OI oi;
   public static lightSystem lightSystem;
-   public static OI oi;
   public static pneumaticSystem pneumaticSystem;
 
   /**
@@ -52,9 +52,7 @@ public class Robot extends TimedRobot {
     pneumaticSystem = new pneumaticSystem();
     oi = new OI();
 
-  }
-  @Override
-  public void disabledInit(){
+
   }
 
   /**
@@ -69,10 +67,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    // Smart Dashboard Numbers
     SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
     SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
     SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
+
   }
 
   /**
