@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.pneumaticSystem;
 import edu.wpi.first.wpilibj.Ultrasonic;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
   public static lightSystem lightSystem;
   public static pneumaticSystem pneumaticSystem;
 
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -54,6 +55,7 @@ public class Robot extends TimedRobot {
 }
   @Override
   public void disabledInit(){
+
   }
 
   /**
@@ -68,6 +70,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
     SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
     SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
     SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
@@ -89,7 +92,6 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
-    Robot.lightSystem.getAllianceColor();
   }
 
   /**
@@ -115,6 +117,7 @@ public class Robot extends TimedRobot {
   
   }
 
+
   @Override
   public void teleopInit() {
 
@@ -122,6 +125,7 @@ public class Robot extends TimedRobot {
     RobotMap.compressor.start();
 
   }
+
 
   /**
    * This function is called periodically during operator control.
@@ -133,6 +137,7 @@ public class Robot extends TimedRobot {
     //SERVO THING
     driveTrain.stangle(69);
     oi.buttoncheck();
+
 
   }
 
