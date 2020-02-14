@@ -49,6 +49,15 @@ public class DriveTrain extends Subsystem {
     RobotMap.diffDrive.tankDrive(0, 0);
   }
 
+  //SERVO THING - just for checking servos - when b button is pressed, sets
+  //angle to an int degrees and if x button is pressed sets the angle to -degrees
+  public void stangle(int degrees) {
+    if (m_oi.getXbox().getBButtonPressed()) {
+      RobotMap.coolServo.setAngle(degrees);
+    } else if (m_oi.getXbox().getXButtonPressed()) {
+      RobotMap.coolServo.setAngle(-1 * degrees);
+    }
+  }
 
 
   

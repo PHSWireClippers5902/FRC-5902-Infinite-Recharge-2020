@@ -127,10 +127,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-
     driveTrain.driveWithXbox();
+    //SERVO THING
+    driveTrain.stangle(69);
     oi.buttoncheck();
-    
   }
 
 

@@ -1,3 +1,5 @@
+
+
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.Servo;
 
 public class RobotMap {
     public static WPI_TalonSRX driveMainLeft = new WPI_TalonSRX(1);
@@ -23,6 +26,8 @@ public class RobotMap {
   public static SolenoidWrapper frontSolenoid;
   public static SolenoidWrapper backSolenoid;
   public static Ultrasonic ultra;
+  //SERVO THING
+  public static Servo coolServo;
 
     public static void init() {
         diffDrive.setSafetyEnabled(true);
@@ -42,6 +47,8 @@ public class RobotMap {
         backSolenoid = new SolenoidWrapper(0);
         frontSolenoid.set(false);
         backSolenoid.set(false);
+         //SERVO THING
+        coolServo = new Servo(0);
     
     }
 }
