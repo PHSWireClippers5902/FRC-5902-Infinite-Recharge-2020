@@ -32,7 +32,6 @@ public class DriveTrain extends Subsystem {
     //Setting motor control followers
     RobotMap.driveFollowLeft.follow(RobotMap.driveMainLeft);
     RobotMap.driveFollowRight.follow(RobotMap.driveMainRight);
-
     setDefaultCommand(new ArcadeDrive());
   }
 
@@ -66,7 +65,7 @@ public class DriveTrain extends Subsystem {
       double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
       double stickX = turnSensitivity * leftStickXValue;
       double stickY = 0; //casey's phone number: 603-957-8532
-
+      
       if (rightTriggerValue > 0 && leftTriggerValue > 0) {
         arcadeDrive(0, 0, 0);
 

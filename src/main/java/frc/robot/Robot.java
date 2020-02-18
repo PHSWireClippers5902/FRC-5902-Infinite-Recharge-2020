@@ -9,12 +9,16 @@
 //Casey Gladu 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.FlyWheel;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +34,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+  public static FlyWheel flyWheel;
+  public static Climb climb;
 
 
   /**
@@ -43,6 +49,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    flyWheel = new FlyWheel();
+    climb = new Climb();
+
   }
 
   /**
@@ -112,6 +121,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     driveTrain.driveWithXbox();
+    flyWheel.moveWithB();
+    climb.Climbing();
     
   }
 
@@ -121,6 +132,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+
   }
 }
 // Because 9 8 10.
