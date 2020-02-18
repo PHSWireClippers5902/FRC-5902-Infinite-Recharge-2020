@@ -9,12 +9,16 @@
 //Casey Gladu 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.FlyWheel;
+
 
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.pneumaticSystem;
@@ -34,8 +38,12 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+
+  public static FlyWheel flyWheel;
+  public static Climb climb;
   public static lightSystem lightSystem;
   public static pneumaticSystem pneumaticSystem;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -48,12 +56,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    flyWheel = new FlyWheel();
+    climb = new Climb();
      lightSystem = new lightSystem();
     pneumaticSystem = new pneumaticSystem();
     oi = new OI();
-}
-  @Override
-  public void disabledInit(){
   }
 
   /**
@@ -129,6 +136,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveTrain.driveWithXbox();
+    flyWheel.moveWithB();
+    climb.Climbing();
+    
+
 
     //SERVO THING
     driveTrain.stangle(69);
@@ -142,6 +153,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+
   }
 }
 // Because 9 8 10.
