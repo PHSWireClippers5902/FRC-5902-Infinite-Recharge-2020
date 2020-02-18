@@ -20,6 +20,10 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.FlyWheel;
 
 
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import frc.robot.subsystems.pneumaticSystem;
+import edu.wpi.first.wpilibj.Ultrasonic;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -34,8 +38,11 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+
   public static FlyWheel flyWheel;
   public static Climb climb;
+  public static lightSystem lightSystem;
+  public static pneumaticSystem pneumaticSystem;
 
 
   /**
@@ -51,7 +58,9 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     flyWheel = new FlyWheel();
     climb = new Climb();
-
+     lightSystem = new lightSystem();
+    pneumaticSystem = new pneumaticSystem();
+    oi = new OI();
   }
 
   /**
@@ -66,12 +75,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
+    SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
+    SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
 
-    // Smart Dashboard Numbers
-
-    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
-    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
-    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
@@ -89,6 +96,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
+    Robot.lightSystem.getAllianceColor();
   }
 
   /**
@@ -114,16 +122,29 @@ public class Robot extends TimedRobot {
   
   }
 
+  @Override
+  public void teleopInit() {
+
+    Robot.lightSystem.getAllianceColor();
+    RobotMap.compressor.start();
+
+  }
+
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void teleopPeriodic() {
-
     driveTrain.driveWithXbox();
     flyWheel.moveWithB();
     climb.Climbing();
     
+
+
+    //SERVO THING
+    driveTrain.stangle(69);
+    oi.buttoncheck();
+
   }
 
 
