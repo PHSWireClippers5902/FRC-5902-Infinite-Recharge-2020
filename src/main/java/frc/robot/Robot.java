@@ -5,6 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+// Why was 6 afraid of 9? (scroll to bottom for answer!!!)
+//Casey Gladu 
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -49,6 +51,7 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     flyWheel = new FlyWheel();
     climb = new Climb();
+
   }
 
   /**
@@ -63,6 +66,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+    // Smart Dashboard Numbers
+
+    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
+    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
+    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
@@ -101,6 +110,8 @@ public class Robot extends TimedRobot {
           break;
         }
     }
+    
+  
   }
 
   /**
@@ -124,3 +135,4 @@ public class Robot extends TimedRobot {
 
   }
 }
+// Because 9 8 10.
