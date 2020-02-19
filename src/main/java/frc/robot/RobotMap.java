@@ -1,4 +1,3 @@
-
 package frc.robot;
 
 
@@ -23,8 +22,17 @@ public class RobotMap {
     public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
     public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(5);
     public static WPI_TalonSRX climb = new WPI_TalonSRX(6);
-
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
+    public static SpeedController lightsR;
+    public static SpeedController lightsL;
+     // Pneumatics
+    public static Compressor compressor;
+    public static SolenoidWrapper frontSolenoid;
+    public static SolenoidWrapper backSolenoid;
+    public static Ultrasonic ultra;
+
+    //SERVO THING
+    public static Servo coolServo;
 
     public static void init() {
         diffDrive.setSafetyEnabled(true);
@@ -51,3 +59,4 @@ public class RobotMap {
         //SERVO THING
         coolServo = new Servo(0);
     }
+}
