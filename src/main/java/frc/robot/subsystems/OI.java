@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import frc.robot.commands.backPistonToggle;
-import frc.robot.commands.frontPistonToggle;
 import frc.robot.Robot;
-import frc.robot.commands.allPistonsOff;
 
 public class OI extends SubsystemBase {
   /**
