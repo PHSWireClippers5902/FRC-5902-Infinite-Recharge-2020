@@ -18,11 +18,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.FlyWheel;
-
-
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.pneumaticSystem;
-import edu.wpi.first.wpilibj.Ultrasonic;
 
 /**
  * The VM is configured to automatically run this class, and to call the
