@@ -5,9 +5,9 @@ import frc.robot.Robot;
 
 //This code turns front and back pistons off 
 
-public class allPistonsOff extends Command {
+public class AllPistonsOff extends Command {
 
-  public allPistonsOff() {
+  public AllPistonsOff() {
     requires(Robot.pneumaticSystem);
   }
 

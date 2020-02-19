@@ -5,9 +5,9 @@ import frc.robot.Robot;
 
 //This code toggles on and off the two back pistons with a toggleWhenPressed button in OI
 
-public class backPistonToggle extends Command {
+public class BackPistonToggle extends Command {
 
-  public backPistonToggle() {
+  public BackPistonToggle() {
     requires(Robot.pneumaticSystem);
   }
 

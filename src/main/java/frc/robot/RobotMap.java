@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Servo;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.SolenoidWrapper;
 
 
 
@@ -23,6 +24,16 @@ public class RobotMap {
     public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
     public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(5);
     public static WPI_TalonSRX climb = new WPI_TalonSRX(6);
+
+    public static Spark lightsR = new Spark(0);
+    public static Spark lightsL = new Spark(3);
+
+    public static Compressor compressor = new Compressor(0);
+
+    public static Solenoid frontSolenoid = new SolenoidWrapper(1);
+    public static Solenoid backSolenoid = new SolenoidWrapper(0);
+
+    public static Servo coolServo = new Servo(0);
 
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
 
@@ -39,15 +50,7 @@ public class RobotMap {
         flyWheel.setSafetyEnabled(true);
         climb.configOpenloopRamp(1);
         climb.setSafetyEnabled(true);
-         //Lights
-        lightsR = new Spark(0);
-        lightsL = new Spark(3);
-        // Create pneumaticSystem
-        compressor = new Compressor(0);
-        frontSolenoid = new SolenoidWrapper(1);
-        backSolenoid = new SolenoidWrapper(0);
         frontSolenoid.set(false);
         backSolenoid.set(false);
-        //SERVO THING
-        coolServo = new Servo(0);
+        }
     }
