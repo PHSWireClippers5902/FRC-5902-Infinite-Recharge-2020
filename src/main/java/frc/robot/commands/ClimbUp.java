@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 public class ClimbUp extends Command {
   public ClimbUp() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.climb);
+    requires(Robot.climbMotor);
   }
 
   // Called just before this Command runs the first time
@@ -32,13 +32,13 @@ public class ClimbUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climb.Stop();
+    Robot.climbMotor.Stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.climb.Stop();
+    Robot.climbMotor.Stop();
   }
 }

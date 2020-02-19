@@ -28,13 +28,8 @@ public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
   }
 
   public void moveWithB(){
-    boolean xboxB = m_oi.getXbox().getBButton();
-    if (xboxB){  
-    Output(0.5);
-
-    } else {
-    Output(0);
-    }
+    double xboxRightJoy = m_oi.getXbox().getY(Hand.kRight);
+    Output(xboxRightJoy);
   }
   
   

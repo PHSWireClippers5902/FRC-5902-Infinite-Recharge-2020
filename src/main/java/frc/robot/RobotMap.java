@@ -15,8 +15,10 @@ public class RobotMap {
     public static WPI_TalonSRX driveMainRight = new WPI_TalonSRX(2);
     public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
 
-    public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(5);
-    public static WPI_TalonSRX climb = new WPI_TalonSRX(6);
+    public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(7);
+
+    public static WPI_TalonSRX climbMotor = new WPI_TalonSRX(4);
+    public static WPI_TalonSRX climbMotorFollow = new WPI_TalonSRX(8);
 
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
 
@@ -31,8 +33,8 @@ public class RobotMap {
         driveFollowRight.configOpenloopRamp(1);
         flyWheel.configOpenloopRamp(1);
         flyWheel.setSafetyEnabled(true);
-        climb.configOpenloopRamp(1);
-        climb.setSafetyEnabled(true);
+        climbMotor.configOpenloopRamp(1);
+        climbMotor.setSafetyEnabled(true);
 
        
     }
