@@ -3,24 +3,24 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-//This code toggles on and off the two back pistons with a toggleWhenPressed button in OI
+//This code turns front and back pistons off 
 
-public class BackPistonToggle extends Command {
+public class AllPistonsOff extends Command {
 
-  public BackPistonToggle() {
+  public AllPistonsOff() {
     requires(Robot.pneumaticSystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.pneumaticSystem.offBackPistons();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.pneumaticSystem.onBackPistons();
+    Robot.pneumaticSystem.offAllPistons();
   }
 
   // Make this return true when this Command no longer needs to run execute()
