@@ -20,14 +20,14 @@ public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
   }
 
   public void Output (double speed){
-    flyWheel.set(-speed);
+    flyWheel.set(speed);
   }
 
   public void Stop(){
     flyWheel.set(0);
   }
 
-  public void moveWithB(){
+  public void moveWithRightJoy(){
     double xboxRightJoy = m_oi.getXbox().getY(Hand.kRight);
     Output(xboxRightJoy);
   }

@@ -79,7 +79,7 @@ public class DriveTrain extends Subsystem {
 
       } 
 
-      System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
+      //System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
       arcadeDrive(stickY, stickX, driveSpeed); 
 
     
