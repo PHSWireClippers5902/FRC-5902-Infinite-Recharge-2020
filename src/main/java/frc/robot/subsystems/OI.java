@@ -21,10 +21,7 @@ public class OI extends SubsystemBase {
    */
   public static XboxController xbox = new XboxController(0);
   public static Joystick joystick;
-  public static OI s_oi = new OI();
 
-  
-  
   public OI() {
     System.out.println(xbox.toString());
   }
@@ -33,7 +30,9 @@ public class OI extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-
+  /* 
+  * Returns the Xbox Controller Stick values for the passed in hand as a double[]
+  */
   public double[] getStickValues(Hand hand){
     double x = xbox.getX(hand);
     double y = xbox.getY(hand);
@@ -42,12 +41,15 @@ public class OI extends SubsystemBase {
     return returnArray;
   }
 
+  /* 
+  * Checks if any mapped buttons are pressed and acivates the bound command if they are
+  */
   public void buttoncheck(){
-    if( s_oi.getXbox().getAButton()){
+    if(xbox.getAButton()){
       Robot.pneumaticSystem.onFrontPistons();
-    }else if( s_oi.getXbox().getBButton()){
+    }else if(xbox.getBButton()){
       Robot.pneumaticSystem.onBackPistons();
-    }else if( s_oi.getXbox().getBumper(Hand.kRight)){
+    }else if(xbox.getBumper(Hand.kRight)){
       Robot.pneumaticSystem.offAllPistons();
     }
 

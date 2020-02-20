@@ -1,6 +1,4 @@
-
 package frc.robot;
-
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Spark;
@@ -12,8 +10,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.SolenoidWrapper;
-
-
 
 
 public class RobotMap {
@@ -33,7 +29,7 @@ public class RobotMap {
     public static Solenoid frontSolenoid = new SolenoidWrapper(1);
     public static Solenoid backSolenoid = new SolenoidWrapper(0);
 
-    public static Servo coolServo = new Servo(0);
+    public static Servo coolServo = new Servo(1);
 
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
 

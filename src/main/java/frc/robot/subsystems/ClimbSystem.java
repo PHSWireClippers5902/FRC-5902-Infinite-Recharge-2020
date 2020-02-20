@@ -9,22 +9,22 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
-public class Climb extends Subsystem {
+public class ClimbSystem extends Subsystem {
   OI m_oi = new OI();
   
 //check if flyWheel needs to be capital
-public final WPI_TalonSRX climb = RobotMap.climb;
+public final WPI_TalonSRX climbMotor = RobotMap.climb;
 
   @Override
   public void initDefaultCommand() {
   }
 
   public void Up (double speed){
-    climb.set(speed);
+    climbMotor.set(speed);
   }
 
   public void Stop(){
-    climb.set(0);
+    climbMotor.set(0);
   }
 
   public void Climbing(){

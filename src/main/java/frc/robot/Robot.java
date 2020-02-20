@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
 
   public static FlyWheel flyWheel;
-  public static Climb climb;
+  public static ClimbSystem climbSystem;
   public static LightSystem lightSystem;
   public static PneumaticSystem pneumaticSystem;
 
@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     driveTrain = new DriveTrain();
     flyWheel = new FlyWheel();
-    climb = new Climb();
+    climbSystem = new ClimbSystem();
     lightSystem = new LightSystem();
     pneumaticSystem = new PneumaticSystem();
     oi = new OI();
@@ -133,7 +133,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     driveTrain.driveWithXbox();
     flyWheel.moveWithB();
-    climb.Climbing();
+    climbSystem.Climbing();
     
 
 
