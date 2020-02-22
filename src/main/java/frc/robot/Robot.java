@@ -28,14 +28,13 @@ import frc.robot.subsystems.PneumaticSystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static OI oi;
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
-  public static OI oi;
   public static ServoSystem servoSystem;
-
   public static FlyWheelSystem flyWheelSystem;
   public static ClimbSystem climbSystem;
   public static LightSystem lightSystem;
@@ -47,17 +46,20 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-    RobotMap.init();
+    
+    pneumaticSystem = new PneumaticSystem();
     driveTrain = new DriveTrain();
     servoSystem = new ServoSystem();
     flyWheelSystem = new FlyWheelSystem();
     climbSystem = new ClimbSystem();
     lightSystem = new LightSystem();
-    pneumaticSystem = new PneumaticSystem();
     oi = new OI();
+
+    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
+    m_chooser.addOption("My Auto", kCustomAuto);
+    SmartDashboard.putData("Auto choices", m_chooser);
+    System.out.println("Robot Init");
+    RobotMap.init();
   }
 
   /**
@@ -133,6 +135,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    driveTrain.driveWithXbox();
+    RobotMap.compressor.stop();
   }
 
   /**

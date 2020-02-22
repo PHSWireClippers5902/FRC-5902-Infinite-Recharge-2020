@@ -9,14 +9,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.OI;
-
+import frc.robot.Robot;
 /**
  * Manages the movement of Lead and Following motor controllers
  */
 public class ServoSystem extends Subsystem {
-
-  OI m_oi = new OI();
 
   @Override
   protected void initDefaultCommand() {
@@ -34,9 +31,9 @@ public class ServoSystem extends Subsystem {
   // angle to an int degrees and if x button is pressed sets the angle to -degrees
   public void stangle(int degrees) {
     /*
-     * if (m_oi.getXbox().getBButtonPressed()) {
+     * if (Robot.oi.getXbox().getBButtonPressed()) {
      * RobotMap.coolServo.setAngle(degrees); } else if
-     * (m_oi.getXbox().getXButtonPressed()) { RobotMap.coolServo.setAngle(-1 *
+     * (Robot.oi.getXbox().getXButtonPressed()) { RobotMap.coolServo.setAngle(-1 *
      * degrees); }
      */}
 

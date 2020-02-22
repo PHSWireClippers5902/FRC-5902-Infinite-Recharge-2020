@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.OI;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.*;
@@ -18,11 +18,9 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
  * Manages the movement of Lead and Following motor controllers
  */
 public class DriveTrain extends Subsystem {
-
-  OI m_oi = new OI();
-
+  
   private double turnSensitivity = 0.9;
-  private double driveSpeed = 0.8;
+  private double driveSpeed = .9;
 
   @Override
   protected void initDefaultCommand() {
@@ -46,7 +44,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void driveWithXbox() {
-    if (m_oi.getXbox() == null) {
+    if (Robot.oi.getXbox() == null) {
       return;
     }
     /******************************************************************
@@ -54,30 +52,31 @@ public class DriveTrain extends Subsystem {
      * it turn, somethin big goes on here
      */
 
-    double rightTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kRight);
-    double leftTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kLeft);
-    double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
+    double rightTriggerValue = Robot.oi.getXbox().getTriggerAxis(Hand.kRight);
+    double leftTriggerValue = Robot.oi.getXbox().getTriggerAxis(Hand.kLeft);
+    double leftStickXValue = Robot.oi.getXbox().getX(Hand.kLeft);
+    double leftStickYValue = Robot.oi.getXbox().getY(Hand.kLeft);
+
     double stickX = turnSensitivity * leftStickXValue;
     double stickY = 0;
     System.out.println("Left Trigger:" + leftTriggerValue);
     System.out.println("Right Trigger:" + rightTriggerValue);
-
+     
     if (rightTriggerValue > 0 && leftTriggerValue > 0) {
       arcadeDrive(0, 0, 0);
 
     } else if (rightTriggerValue > 0) {
 
-      stickY = rightTriggerValue;
+      stickY = -1 * rightTriggerValue;
 
     } else if (leftTriggerValue > 0) {
 
-      stickY = -1 * leftTriggerValue;
+      stickY = leftTriggerValue;
 
     }
 
-    // System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive
-    // Speed: " + driveSpeed);
-    // arcadeDrive(stickY, stickX, driveSpeed);
+    System.out.println("StickX: " + stickX + ", StickY: " + stickY);
+    arcadeDrive(stickY, stickX, driveSpeed); 
 
   }
 

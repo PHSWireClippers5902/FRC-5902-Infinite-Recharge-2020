@@ -10,7 +10,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class ClimbSystem extends Subsystem {
 
-  // check if flyWheel needs to be capital
   public final WPI_TalonSRX climb = RobotMap.climb;
 
   @Override

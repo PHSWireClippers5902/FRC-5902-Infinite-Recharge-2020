@@ -6,11 +6,11 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
-public class FlyWheel extends Command {
+public class ActivateFlyWheel extends Command {
 
   public double speed;
 
-  public FlyWheel() {
+  public ActivateFlyWheel(double speed) {
     // Use requires() here to declare subsystem dependencies
     this.speed = speed;
     requires(Robot.flyWheelSystem);
