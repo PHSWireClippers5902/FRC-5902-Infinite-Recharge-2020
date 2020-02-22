@@ -5,8 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-// Why was 6 afraid of 9? (scroll to bottom for answer!!!)
-//Casey Gladu 
+
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -18,6 +17,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.ServoSystem;
 import frc.robot.subsystems.PneumaticSystem;
 
 /**
@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
   public static OI oi;
+  public static ServoSystem servoSystem;
 
   public static FlyWheel flyWheel;
   public static Climb climb;
@@ -52,9 +53,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    servoSystem = new ServoSystem();
     flyWheel = new FlyWheel();
     climb = new Climb();
-     lightSystem = new LightSystem();
+    lightSystem = new LightSystem();
     pneumaticSystem = new PneumaticSystem();
     oi = new OI();
   }
@@ -74,7 +76,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
     SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
     SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
-
   }
 
   /**
@@ -120,7 +121,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    servoSystem.stangle(69);
     Robot.lightSystem.getAllianceColor();
     RobotMap.compressor.start();
 
@@ -137,8 +138,6 @@ public class Robot extends TimedRobot {
     
 
 
-    //SERVO THING
-    driveTrain.stangle(69);
     oi.buttoncheck();
 
   }
@@ -152,4 +151,3 @@ public class Robot extends TimedRobot {
 
   }
 }
-// Because 9 8 10.

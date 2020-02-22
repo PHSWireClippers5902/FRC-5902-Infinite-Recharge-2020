@@ -6,8 +6,8 @@ Infinite Recharge 2020 Code for team 5902
 # Robot Subsystems
 | Talon ID  | Item Controlled | 
 | ------------- | ------------- |
-| 1 | Right Drive Lead |
-| 2 | Left Drive Lead |
+| 1 | Right Drive Main |
+| 2 | Left Drive Main |
 | 3 | Right Drive Follow |
 | 4 | Left Drive Follow |
 | 5 | NONE |
@@ -20,9 +20,9 @@ Infinite Recharge 2020 Code for team 5902
 
 ## DriveTrain - Robot Driving
 Talon SRX Motor Controllers connected 
-- Right Motor Lead (1)
+- Right Motor Main (1)
 - Right Motor Follow (3)
-- Left Motor Lead (2)
+- Left Motor Main (2)
 - Left Motor Follow (4)
 
 ## IntakeSystem - Method to Intake and Eject the cargo Ball

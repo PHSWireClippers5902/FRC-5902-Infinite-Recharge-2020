@@ -16,11 +16,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class RobotMap {
     
-    public static WPI_TalonSRX driveMainLeft = new WPI_TalonSRX(1);
-    public static WPI_VictorSPX driveFollowLeft = new WPI_VictorSPX(3);
-    public static WPI_TalonSRX driveMainRight = new WPI_TalonSRX(2);
-    public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(4);
-    public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(5);
+    public static WPI_TalonSRX driveMainRight = new WPI_TalonSRX(1);
+    public static WPI_TalonSRX driveMainLeft = new WPI_TalonSRX(2);
+    public static WPI_VictorSPX driveFollowRight = new WPI_VictorSPX(3);
+
+    public static WPI_VictorSPX driveFollowLeft = new WPI_VictorSPX(4);
+    public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(8);
+    // NEED TO EDIT Talon Assignment for Climb
     public static WPI_TalonSRX climb = new WPI_TalonSRX(6);
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
     public static SpeedController lightsR;
@@ -57,6 +59,6 @@ public class RobotMap {
         frontSolenoid.set(false);
         backSolenoid.set(false);
         //SERVO THING
-        coolServo = new Servo(0);
+        //coolServo = new Servo(0);
     }
 }

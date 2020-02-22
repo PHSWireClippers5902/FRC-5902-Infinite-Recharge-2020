@@ -20,7 +20,7 @@ public final WPI_TalonSRX climb = RobotMap.climb;
   }
 
   public void Up (double speed){
-    climb.set(speed);
+   climb.set(speed);
   }
 
   public void Stop(){

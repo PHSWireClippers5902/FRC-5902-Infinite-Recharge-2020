@@ -47,19 +47,6 @@ public class DriveTrain extends Subsystem {
   public void stop() {
     RobotMap.diffDrive.tankDrive(0, 0);
   }
-
-  //SERVO THING - just for checking servos - when b button is pressed, sets
-  //angle to an int degrees and if x button is pressed sets the angle to -degrees
-  public void stangle(int degrees) {
-    if (m_oi.getXbox().getBButtonPressed()) {
-      RobotMap.coolServo.setAngle(degrees);
-    } else if (m_oi.getXbox().getXButtonPressed()) {
-      RobotMap.coolServo.setAngle(-1 * degrees);
-    }
-  }
-
-
-  
   public void driveWithXbox() {
     if (m_oi.getXbox() == null) {
       return;
@@ -73,9 +60,14 @@ public class DriveTrain extends Subsystem {
       double leftTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kLeft);
       double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
       double stickX = turnSensitivity * leftStickXValue;
-      double stickY = 0; //casey's phone number: 603-957-8532
+      double stickY = 0; 
+      System.out.println("Left Trigger:" + leftTriggerValue);
+      System.out.println("Right Trigger:" + rightTriggerValue);
+
+        arcadeDrive(0, 0, driveSpeed);
       
-      if (rightTriggerValue > 0 && leftTriggerValue > 0) {
+      
+      /* else if (rightTriggerValue > 0 && leftTriggerValue > 0) {
         arcadeDrive(0, 0, 0);
 
       } else if (rightTriggerValue > 0) {
@@ -87,9 +79,10 @@ public class DriveTrain extends Subsystem {
         stickY = -1 * leftTriggerValue;
 
       } 
+ */
+      //System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
+      //arcadeDrive(stickY, stickX, driveSpeed); 
 
-      System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
-      arcadeDrive(stickY, stickX, driveSpeed); 
 
     
   }
