@@ -71,10 +71,20 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
-    SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
-    SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
-
+    
+    // Pnuematic Status Front *
+    // Pnuematic Status Back *
+    // Pnuematic Status Top *
+    // Ball Hatch (Servo)
+    // Presure Switch *
+    // Flywheel (On/Off)
+    SmartDashboard.putBoolean("fPistons", RobotMap.frontSolenoid.get());
+    SmartDashboard.putBoolean("bPistons", RobotMap.backSolenoid.get());
+    // SmartDashboard.putBoolean("tPistons", RobotMap.topSolenoid.get());
+    SmartDashboard.putBoolean("pressureSwitch", RobotMap.compressor.getPressureSwitchValue());
+    SmartDashboard.putBoolean("flyWheel", flyWheel.getFlywheelStatus());
+    // DO THIS ONE NEXT
+    SmartDashboard.putBoolean("ballHatch", true );
   }
 
   /**

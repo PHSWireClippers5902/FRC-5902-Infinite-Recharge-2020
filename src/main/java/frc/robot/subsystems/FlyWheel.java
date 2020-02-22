@@ -11,6 +11,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class FlyWheel extends Subsystem {
   OI m_oi = new OI();
+
+  public double flyWheelSpeed;
   
 //check if flyWheel needs to be capital
 public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
@@ -21,10 +23,23 @@ public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
 
   public void Output (double speed){
     flyWheel.set(-speed);
+    flyWheelSpeed = -speed;
   }
 
   public void Stop(){
     flyWheel.set(0);
+    flyWheelSpeed = 0;
+  }
+
+  public boolean getFlywheelStatus () {
+     if (flyWheelSpeed != 0)
+     { 
+        return true;
+     } 
+     else
+     {
+        return false;
+     }
   }
 
   public void moveWithB(){
