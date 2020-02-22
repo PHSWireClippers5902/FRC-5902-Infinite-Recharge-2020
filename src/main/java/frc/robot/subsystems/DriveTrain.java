@@ -8,28 +8,23 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
-
 /**
  * Manages the movement of Lead and Following motor controllers
  */
 public class DriveTrain extends Subsystem {
-
-  OI m_oi = new OI();
-
-  private double turnSensitivity = 0.9;
-  private double driveSpeed = 0.8;
-
-
   
+  private double turnSensitivity = 0.9;
+  private double driveSpeed = .9;
+
   @Override
   protected void initDefaultCommand() {
-    //Setting motor control followers
+    // Setting motor control followers
     RobotMap.driveFollowLeft.follow(RobotMap.driveMainLeft);
     RobotMap.driveFollowRight.follow(RobotMap.driveMainRight);
     setDefaultCommand(new ArcadeDrive());
@@ -47,46 +42,42 @@ public class DriveTrain extends Subsystem {
   public void stop() {
     RobotMap.diffDrive.tankDrive(0, 0);
   }
+
   public void driveWithXbox() {
-    if (m_oi.getXbox() == null) {
+    if (Robot.oi.getXbox() == null) {
       return;
     }
-      /****************************************************************** 
-      Right trigger moves robot forward, left moves it backward, left stick makes it turn, 
-      ******************************************************************* somethin big goes on here */
+    /******************************************************************
+     * Right trigger moves robot forward, left moves it backward, left stick makes
+     * it turn, somethin big goes on here
+     */
 
+    double rightTriggerValue = Robot.oi.getXbox().getTriggerAxis(Hand.kRight);
+    double leftTriggerValue = Robot.oi.getXbox().getTriggerAxis(Hand.kLeft);
+    double leftStickXValue = Robot.oi.getXbox().getX(Hand.kLeft);
+    double leftStickYValue = Robot.oi.getXbox().getY(Hand.kLeft);
 
-      double rightTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kRight);
-      double leftTriggerValue = m_oi.getXbox().getTriggerAxis(Hand.kLeft);
-      double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
-      double stickX = turnSensitivity * leftStickXValue;
-      double stickY = 0; 
-      System.out.println("Left Trigger:" + leftTriggerValue);
-      System.out.println("Right Trigger:" + rightTriggerValue);
+    double stickX = turnSensitivity * leftStickXValue;
+    double stickY = 0;
+    System.out.println("Left Trigger:" + leftTriggerValue);
+    System.out.println("Right Trigger:" + rightTriggerValue);
+     
+    if (rightTriggerValue > 0 && leftTriggerValue > 0) {
+      arcadeDrive(0, 0, 0);
 
-      
-      if (rightTriggerValue > 0 && leftTriggerValue >0) {
-        arcadeDrive(0, 0, 0);
-      }
-      else if (rightTriggerValue > 0 && leftTriggerValue > 0) {
-        arcadeDrive(0, 0, 0);
+    } else if (rightTriggerValue > 0) {
 
-      } else if (rightTriggerValue > 0) {
+      stickY = -1 * rightTriggerValue;
 
-        stickY = rightTriggerValue;
+    } else if (leftTriggerValue > 0) {
 
-      } else if (leftTriggerValue > 0) {
+      stickY = leftTriggerValue;
 
-        stickY = -1 * leftTriggerValue;
+    }
 
-      } 
+    System.out.println("StickX: " + stickX + ", StickY: " + stickY);
+    arcadeDrive(stickY, stickX, driveSpeed); 
 
-      //System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
-      arcadeDrive(stickY, stickX, driveSpeed); 
-
-
-    
   }
-
 
 }

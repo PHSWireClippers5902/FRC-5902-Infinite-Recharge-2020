@@ -11,23 +11,24 @@ public class LightSystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // public final SpeedController color = RobotMap.lights;
-  //Color when not launching things
-  
-  private double y=-1;
-  public void moreLights(){
-    y +=.001;
+  // Color when not launching things
+
+  private double y = -1;
+
+  public void moreLights() {
+    y += .001;
     RobotMap.lightsR.set(y);
     RobotMap.lightsL.set(y);
     System.out.println(y);
   }
-  
+
   public void getAllianceColor() {
     DriverStation.Alliance color;
     color = DriverStation.getInstance().getAlliance();
     if (color == DriverStation.Alliance.valueOf("Blue")) {
       RobotMap.lightsR.set(.85);
       RobotMap.lightsL.set(.85);
-      } else if (color == DriverStation.Alliance.valueOf("Red")) {
+    } else if (color == DriverStation.Alliance.valueOf("Red")) {
       red();
     } else {
       scannerGray();
@@ -38,7 +39,6 @@ public class LightSystem extends Subsystem {
     RobotMap.lightsR.set(-69.69);
     RobotMap.lightsL.set(-69.69);
   }
-
 
   public void chaseBlue() {
     RobotMap.lightsR.set(-.29);
@@ -156,29 +156,20 @@ public class LightSystem extends Subsystem {
     RobotMap.lightsR.set(color);
     RobotMap.lightsL.set(color);
   }
-  
-/*   public String getLightColor() {
-    String Color = "Null";
-    switch ((int)(color.get()*100)) {
-    case   0: Color = "Off"; break;
-    case  49: Color = "Error"; break;
-    case  -7: Color = "Strobe"; break;
-    case  95: Color = "Gray"; break;
-    case -33: Color = "Scanner Gray"; break;
-    case -41: Color = "Calming Ocean"; break;
-    case -85: Color = "Red Bullets"; break;
-    case -35: Color = "Scanner Red"; break;
-    case -21: Color = "Beat White"; break;
-    case -25: Color = "Beat Red"; break;
-    case -23: Color = "Beat Blue"; break;
-    case -77: Color = "Party Time"; break;
-    case  -5: Color = "How I really feel"; break;
-    case  93: Color = "Revenge"; break;
-    case -83: Color = "Blue Shots"; break;
-    case  85: Color = "Blue"; break;
-    case  61: Color = "Red"; break;}
-    return Color;
-  } */
+
+  /*
+   * public String getLightColor() { String Color = "Null"; switch
+   * ((int)(color.get()*100)) { case 0: Color = "Off"; break; case 49: Color =
+   * "Error"; break; case -7: Color = "Strobe"; break; case 95: Color = "Gray";
+   * break; case -33: Color = "Scanner Gray"; break; case -41: Color =
+   * "Calming Ocean"; break; case -85: Color = "Red Bullets"; break; case -35:
+   * Color = "Scanner Red"; break; case -21: Color = "Beat White"; break; case
+   * -25: Color = "Beat Red"; break; case -23: Color = "Beat Blue"; break; case
+   * -77: Color = "Party Time"; break; case -5: Color = "How I really feel";
+   * break; case 93: Color = "Revenge"; break; case -83: Color = "Blue Shots";
+   * break; case 85: Color = "Blue"; break; case 61: Color = "Red"; break;} return
+   * Color; }
+   */
 
   @Override
   public void initDefaultCommand() {

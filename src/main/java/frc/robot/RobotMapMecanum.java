@@ -19,9 +19,10 @@ public class RobotMapMecanum {
     public static WPI_TalonSRX rearLeftDrive = new WPI_TalonSRX(3);
     public static WPI_TalonSRX rearRightDrive = new WPI_TalonSRX(4);
 
-    public static MecanumDrive mecanumDrive = new MecanumDrive(frontLeftDrive, rearLeftDrive, frontRightDrive, rearRightDrive);
+    public static MecanumDrive mecanumDrive = new MecanumDrive(frontLeftDrive, rearLeftDrive, frontRightDrive,
+            rearRightDrive);
 
-    public static void init(){
+    public static void init() {
         mecanumDrive.setSafetyEnabled(true);
         mecanumDrive.setExpiration(0.1);
         mecanumDrive.setMaxOutput(1.0);

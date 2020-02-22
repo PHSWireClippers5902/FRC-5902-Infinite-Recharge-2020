@@ -5,7 +5,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -14,9 +13,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.FlyWheelSystem;
 import frc.robot.subsystems.ServoSystem;
 import frc.robot.subsystems.PneumaticSystem;
 
@@ -28,48 +28,51 @@ import frc.robot.subsystems.PneumaticSystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static OI oi;
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static DriveTrain driveTrain;
-  public static OI oi;
   public static ServoSystem servoSystem;
-
-  public static FlyWheel flyWheel;
-  public static Climb climb;
+  public static FlyWheelSystem flyWheelSystem;
+  public static ClimbSystem climbSystem;
   public static LightSystem lightSystem;
   public static PneumaticSystem pneumaticSystem;
 
-
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
+    
+    pneumaticSystem = new PneumaticSystem();
+    driveTrain = new DriveTrain();
+    servoSystem = new ServoSystem();
+    flyWheelSystem = new FlyWheelSystem();
+    climbSystem = new ClimbSystem();
+    lightSystem = new LightSystem();
+    oi = new OI();
+
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    System.out.println("Robot Init");
     RobotMap.init();
-    driveTrain = new DriveTrain();
-    servoSystem = new ServoSystem();
-    flyWheel = new FlyWheel();
-    climb = new Climb();
-    lightSystem = new LightSystem();
-    pneumaticSystem = new PneumaticSystem();
-    oi = new OI();
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like diagnostics that you want ran during disabled, autonomous,
+   * teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and SmartDashboard integrated updating.
    * 
-   * <p>Does barely anything???
+   * <p>
+   * Does barely anything???
    */
   @Override
   public void robotPeriodic() {
@@ -80,14 +83,15 @@ public class Robot extends TimedRobot {
 
   /**
    * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString line to get the auto name from the text box below the Gyro
+   * between different autonomous modes using the dashboard. The sendable chooser
+   * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+   * remove all of the chooser code and uncomment the getString line to get the
+   * auto name from the text box below the Gyro
    *
-   * <p>You can add additional auto modes by adding additional comparisons to
-   * the switch structure below with additional strings. If using the
-   * SendableChooser make sure to add them to the chooser code above as well.
+   * <p>
+   * You can add additional auto modes by adding additional comparisons to the
+   * switch structure below with additional strings. If using the SendableChooser
+   * make sure to add them to the chooser code above as well.
    */
   @Override
   public void autonomousInit() {
@@ -107,16 +111,15 @@ public class Robot extends TimedRobot {
         break;
       case kDefaultAuto:
       default:
-        if (oi.getXbox() != null){
+        if (oi.getXbox() != null) {
           RobotMap.diffDrive.arcadeDrive(oi.getXbox().getRawAxis(1), 0);
           break;
-        } else{
+        } else {
           RobotMap.diffDrive.arcadeDrive(0.1, 0);
           break;
         }
     }
-    
-  
+
   }
 
   @Override
@@ -124,7 +127,6 @@ public class Robot extends TimedRobot {
     servoSystem.stangle(69);
     Robot.lightSystem.getAllianceColor();
     RobotMap.compressor.start();
-
   }
 
   /**
@@ -132,16 +134,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    Scheduler.getInstance().run();
     driveTrain.driveWithXbox();
-    flyWheel.moveWithB();
-    climb.Climbing();
-    
-
-
-    oi.buttoncheck();
-
+    RobotMap.compressor.stop();
   }
-
 
   /**
    * This function is called periodically during test mode.
