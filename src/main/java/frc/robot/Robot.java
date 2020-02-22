@@ -14,9 +14,10 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.FlyWheelSystem;
 import frc.robot.subsystems.ServoSystem;
 import frc.robot.subsystems.PneumaticSystem;
 
@@ -36,8 +37,8 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static ServoSystem servoSystem;
 
-  public static FlyWheel flyWheel;
-  public static Climb climb;
+  public static FlyWheelSystem flyWheelSystem;
+  public static ClimbSystem climbSystem;
   public static LightSystem lightSystem;
   public static PneumaticSystem pneumaticSystem;
 
@@ -54,8 +55,8 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     driveTrain = new DriveTrain();
     servoSystem = new ServoSystem();
-    flyWheel = new FlyWheel();
-    climb = new Climb();
+    flyWheelSystem = new FlyWheelSystem();
+    climbSystem = new ClimbSystem();
     lightSystem = new LightSystem();
     pneumaticSystem = new PneumaticSystem();
     oi = new OI();
@@ -124,7 +125,6 @@ public class Robot extends TimedRobot {
     servoSystem.stangle(69);
     Robot.lightSystem.getAllianceColor();
     RobotMap.compressor.start();
-
   }
 
   /**
@@ -132,12 +132,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    driveTrain.driveWithXbox();
-    flyWheel.moveWithB();
-    climb.Climbing();
-    
-
-
+    Scheduler.getInstance().run();
     oi.buttoncheck();
 
   }

@@ -7,19 +7,23 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.commands.*;
+import frc.robot.commands.allPistonsOff;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.backPistonToggle;
+import frc.robot.commands.Climb;
+import frc.robot.commands.FlyWheel;
+import frc.robot.commands.frontPistonToggle;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
-public class OI extends SubsystemBase {
+public class OI {
   /**
    * Enables control through either an Xbox Controller or a Joystick
    */
   public static XboxController xbox = new XboxController(0);
-  public static Joystick logitech;
+  public static Joystick logitech = new Joystick(1);
   public static OI s_oi = new OI();
 
   
@@ -27,10 +31,7 @@ public class OI extends SubsystemBase {
   public OI() {
     System.out.println(xbox.toString());
   }
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+
 
 
   public double[] getStickValues(Hand hand){
