@@ -101,9 +101,9 @@ public class OI {
     joystickButtonR3 = new JoystickButton(logitechRight, 3);
 
     //Pistons
-    xboxRightBumber.toggleWhenPressed(new frontPistonToggle());
-    xboxRightBumber.toggleWhenPressed(new backPistonToggle());
-    xboxBButton.whenPressed(new allPistonsOff());
+    xboxRightBumber.toggleWhenPressed(new FrontPistonToggle());
+    xboxRightBumber.toggleWhenPressed(new BackPistonToggle());
+    xboxBButton.whenPressed(new AllPistonsOff());
 
     //Climb
     xboxAButton.whenPressed(new Climb(.25));
