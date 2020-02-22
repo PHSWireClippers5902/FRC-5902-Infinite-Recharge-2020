@@ -1,18 +1,13 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.FlyWheelOutput;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
-public class FlyWheel extends Subsystem {
-  OI m_oi = new OI();
+public class FlyWheelSystem extends Subsystem {
 
-  public double flyWheelSpeed;
+public double flyWheelSpeed;
   
 //check if flyWheel needs to be capital
 public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
@@ -21,12 +16,17 @@ public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
   public void initDefaultCommand() {
   }
 
-  public void Output (double speed){
+  public void eject (double speed){
    flyWheel.set(-speed);
-    flyWheelSpeed = -speed;
+   flyWheelSpeed = -speed;
   }
 
-  public void Stop(){
+  public void intake (double speed){
+    flyWheel.set(speed);
+    flyWheelSpeed = speed;
+   }
+
+  public void stop(){
     flyWheel.set(0);
     flyWheelSpeed = 0;
   }
@@ -41,21 +41,4 @@ public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
         return false;
      }
   }
-
-  public void moveWithB(){
-    boolean xboxB = m_oi.getXbox().getBButton();
-    if (xboxB){  
-    Output(-.7);
-
-    } else {
-    Output(0);
-    }
-  }
-  
-  
-
-  
-
-  
-
 }

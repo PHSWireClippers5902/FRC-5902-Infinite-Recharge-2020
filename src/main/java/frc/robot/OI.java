@@ -5,21 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import frc.robot.Robot;
 
 public class OI extends SubsystemBase {
   /**
    * Enables control through either an Xbox Controller or a Joystick
    */
   public static XboxController xbox = new XboxController(0);
-  public static Joystick joystick;
+  public static Joystick logitech;
   public static OI s_oi = new OI();
 
   
@@ -54,5 +54,9 @@ public class OI extends SubsystemBase {
 
   public XboxController getXbox(){
     return xbox;
+  }
+
+  public Joystick getLogitech(){
+    return logitech;
   }
 }
