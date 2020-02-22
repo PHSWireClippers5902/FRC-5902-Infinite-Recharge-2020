@@ -26,38 +26,34 @@ public class OI {
   public static Joystick logitech = new Joystick(1);
   public static OI s_oi = new OI();
 
-  
-  
   public OI() {
     System.out.println(xbox.toString());
   }
 
-
-
-  public double[] getStickValues(Hand hand){
+  public double[] getStickValues(Hand hand) {
     double x = xbox.getX(hand);
     double y = xbox.getY(hand);
 
-    double[] returnArray = {x, y};
+    double[] returnArray = { x, y };
     return returnArray;
   }
 
-  public void buttoncheck(){
-    if( s_oi.getXbox().getAButton()){
+  public void buttoncheck() {
+    if (s_oi.getXbox().getAButton()) {
       Robot.pneumaticSystem.onFrontPistons();
-    }else if( s_oi.getXbox().getBButton()){
+    } else if (s_oi.getXbox().getBButton()) {
       Robot.pneumaticSystem.onBackPistons();
-    }else if( s_oi.getXbox().getBumper(Hand.kRight)){
+    } else if (s_oi.getXbox().getBumper(Hand.kRight)) {
       Robot.pneumaticSystem.offAllPistons();
     }
 
   }
 
-  public XboxController getXbox(){
+  public XboxController getXbox() {
     return xbox;
   }
 
-  public Joystick getLogitech(){
+  public Joystick getLogitech() {
     return logitech;
   }
 }

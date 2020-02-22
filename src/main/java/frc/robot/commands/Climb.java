@@ -7,6 +7,7 @@ import frc.robot.subsystems.*;
 public class Climb extends Command {
 
   public double speed;
+
   public Climb() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.climbSystem);

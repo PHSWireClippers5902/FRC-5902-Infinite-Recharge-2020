@@ -7,9 +7,9 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class FlyWheel extends Command {
-  
+
   public double speed;
-  
+
   public FlyWheel() {
     // Use requires() here to declare subsystem dependencies
     this.speed = speed;
@@ -19,7 +19,7 @@ public class FlyWheel extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -28,12 +28,10 @@ public class FlyWheel extends Command {
     if (RobotMap.compressor.enabled() == true) {
       RobotMap.compressor.stop();
       Robot.flyWheelSystem.eject(this.speed);
-    }
-    else {
+    } else {
       Robot.flyWheelSystem.eject(this.speed);
     }
-    
-  
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
