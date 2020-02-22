@@ -9,12 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.commands.allPistonsOff;
+import frc.robot.commands.AllPistonsOff;
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.backPistonToggle;
+import frc.robot.commands.BackPistonToggle;
 import frc.robot.commands.Climb;
 import frc.robot.commands.FlyWheel;
-import frc.robot.commands.frontPistonToggle;
+import frc.robot.commands.FrontPistonToggle;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
