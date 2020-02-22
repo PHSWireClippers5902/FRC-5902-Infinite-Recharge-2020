@@ -4,39 +4,50 @@ Infinite Recharge 2020 Code for team 5902
 #2020 Notes
 
 # Robot Subsystems
+| Talon ID  | Item Controlled | 
+| ------------- | ------------- |
+| 1 | Right Drive Lead |
+| 2 | Left Drive Lead |
+| 3 | Right Drive Follow |
+| 4 | Left Drive Follow |
+| 5 | NONE |
+| 6 | Right Top |
+| 7 | NONE |
+| 8 | Flywheel|
+| 9 | NONE |
+| 10 | NONE |
+| 11 | NONE |
 
 ## DriveTrain - Robot Driving
 Talon SRX Motor Controllers connected 
 - Right Motor Lead (1)
-- Right Motor Follow (2)
-- Left Motor Lead (3)
+- Right Motor Follow (3)
+- Left Motor Lead (2)
 - Left Motor Follow (4)
 
 ## IntakeSystem - Method to Intake and Eject the cargo Ball
-### OLD INFORMATION NEEDS TO BE UPDATED FOR 2020
 
 Talon SRX Motor Controllers connected 
 - Right Motor Lead (5)
 - Right Motor Follow (6)
 
 ## ServoControl
-### OLD INFORMATION NEEDS TO BE UPDATED FOR 2020
 
-Rev Smart Robotics Servos
-- Rev Smart Robotics Servo (PWM 1) - Arm
-- Rev Smart Robotics Servo (PWM 2) - Triangle
+Servos
+- Servo (PWM 0) - Opening Gate
 
 ## PneumaticSystem
 Single solenoids connected 
-- frontPistons (1)
-- backPistons (0)
+- frontPistons (0)
+- backPistons (1)
+- topPistons (2)
 
 ## LightSystem
 
 ### OLD INFORMATION NEEDS TO BE UPDATED FOR 2020
 
 Rev Robotics Blinkin Light Controllers
-- Right Light Controller (PWM 0)
+- Right Light Controller (PWM 2)
 - Left Light Controller  (PWM 3)
 
 # Autonomous Mode
@@ -56,12 +67,11 @@ Multiple options selectable on Shuffleboard
 
 During teleop mode the robot can run commands as well as having the driver drive around. On the drive station computer, there is a SmartDashboard runnng shuffleboard that will display information from the robot to the drivers.
 
-## Driver Station Shuffleboard (SmartDashboard)
+## Driver Station Dashboard 
 
-### OLD INFORMATION NEEDS TO BE UPDATED FOR 2020
-On shuffleboard we have the following
-- USB Camera Feeds (5 cameras)
-- Status of Front & Back Pistons
+On Dashboard we have the following
+- USB Camera Feeds (4 cameras)
+- Status of Front & Back & Top Pistons
 - Status of Pressure Switch
 - Basic Field Information
 - What direction drive is currently in
