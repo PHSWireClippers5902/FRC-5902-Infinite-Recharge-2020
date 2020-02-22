@@ -8,7 +8,7 @@ public class Climb extends Command {
 
   public double speed;
 
-  public Climb() {
+  public Climb(double speed) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.climbSystem);
     this.speed = speed;
