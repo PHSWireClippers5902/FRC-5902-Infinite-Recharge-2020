@@ -9,12 +9,16 @@
 //Casey Gladu 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.PneumaticSystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +35,11 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static OI oi;
 
+  public static FlyWheel flyWheel;
+  public static Climb climb;
+  public static LightSystem lightSystem;
+  public static PneumaticSystem pneumaticSystem;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -43,6 +52,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     RobotMap.init();
     driveTrain = new DriveTrain();
+    flyWheel = new FlyWheel();
+    climb = new Climb();
+     lightSystem = new LightSystem();
+    pneumaticSystem = new PneumaticSystem();
+    oi = new OI();
   }
 
   /**
@@ -57,12 +71,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
+    SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
+    SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
 
-    // Smart Dashboard Numbers
-
-    SmartDashboard.putNumber("Get X", Robot.oi.getXbox().getX());
-    SmartDashboard.putNumber("Get Y", Robot.oi.getXbox().getY());
-    SmartDashboard.putNumber("Robot Speed", Robot.driveTrain.getDriveSpeed());
   }
 
   /**
@@ -80,6 +92,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
+    Robot.lightSystem.getAllianceColor();
   }
 
   /**
@@ -105,14 +118,29 @@ public class Robot extends TimedRobot {
   
   }
 
+  @Override
+  public void teleopInit() {
+
+    Robot.lightSystem.getAllianceColor();
+    RobotMap.compressor.start();
+
+  }
+
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void teleopPeriodic() {
-
     driveTrain.driveWithXbox();
+    flyWheel.moveWithB();
+    climb.Climbing();
     
+
+
+    //SERVO THING
+    driveTrain.stangle(69);
+    oi.buttoncheck();
+
   }
 
 
@@ -121,6 +149,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+
   }
 }
 // Because 9 8 10.

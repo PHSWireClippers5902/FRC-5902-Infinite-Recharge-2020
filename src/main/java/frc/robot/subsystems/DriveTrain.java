@@ -32,7 +32,6 @@ public class DriveTrain extends Subsystem {
     //Setting motor control followers
     RobotMap.driveFollowLeft.follow(RobotMap.driveMainLeft);
     RobotMap.driveFollowRight.follow(RobotMap.driveMainRight);
-
     setDefaultCommand(new ArcadeDrive());
   }
 
@@ -49,6 +48,15 @@ public class DriveTrain extends Subsystem {
     RobotMap.diffDrive.tankDrive(0, 0);
   }
 
+  //SERVO THING - just for checking servos - when b button is pressed, sets
+  //angle to an int degrees and if x button is pressed sets the angle to -degrees
+  public void stangle(int degrees) {
+    if (m_oi.getXbox().getBButtonPressed()) {
+      RobotMap.coolServo.setAngle(degrees);
+    } else if (m_oi.getXbox().getXButtonPressed()) {
+      RobotMap.coolServo.setAngle(-1 * degrees);
+    }
+  }
 
 
   
@@ -66,7 +74,7 @@ public class DriveTrain extends Subsystem {
       double leftStickXValue = m_oi.getXbox().getX(Hand.kLeft);
       double stickX = turnSensitivity * leftStickXValue;
       double stickY = 0; //casey's phone number: 603-957-8532
-
+      
       if (rightTriggerValue > 0 && leftTriggerValue > 0) {
         arcadeDrive(0, 0, 0);
 
