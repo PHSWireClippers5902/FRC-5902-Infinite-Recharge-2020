@@ -64,10 +64,11 @@ public class DriveTrain extends Subsystem {
       System.out.println("Left Trigger:" + leftTriggerValue);
       System.out.println("Right Trigger:" + rightTriggerValue);
 
-        arcadeDrive(0, 0, driveSpeed);
       
-      
-      /* else if (rightTriggerValue > 0 && leftTriggerValue > 0) {
+      if (rightTriggerValue > 0 && leftTriggerValue >0) {
+        arcadeDrive(0, 0, 0);
+      }
+      else if (rightTriggerValue > 0 && leftTriggerValue > 0) {
         arcadeDrive(0, 0, 0);
 
       } else if (rightTriggerValue > 0) {
@@ -79,9 +80,9 @@ public class DriveTrain extends Subsystem {
         stickY = -1 * leftTriggerValue;
 
       } 
- */
+
       //System.out.println("StickX: " + stickX + ", StickY: " + stickY + ", Drive Speed: " + driveSpeed);
-      //arcadeDrive(stickY, stickX, driveSpeed); 
+      arcadeDrive(stickY, stickX, driveSpeed); 
 
 
     
