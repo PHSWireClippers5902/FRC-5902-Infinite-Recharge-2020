@@ -13,7 +13,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.AllPistonsOff;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BackPistonToggle;
-import frc.robot.commands.Climb;
+import frc.robot.commands.ActivateClimb;
+import frc.robot.commands.ActivateClimb;
 import frc.robot.commands.ActivateFlyWheel;
 import frc.robot.commands.FrontPistonToggle;
 
@@ -83,18 +84,22 @@ public class OI {
      */
     // Pistons
     logitechRightBumper.toggleWhenPressed(new FrontPistonToggle());
-    logitechRightBumper.toggleWhenPressed(new BackPistonToggle());
+    logitechLeftBumper.toggleWhenPressed(new BackPistonToggle());
     logitechButtonB.whenPressed(new AllPistonsOff());
     // FlyWheel
-    xboxButtonB.whenPressed(new ActivateFlyWheel(-.6));
+  /*   xboxButtonB.whenPressed(new ActivateFlyWheel(-.6));
     xboxButtonB.whenReleased(new ActivateFlyWheel(0));
     
     xboxButtonX.whenPressed(new ActivateFlyWheel(-.8));
-    xboxButtonX.whenReleased(new ActivateFlyWheel(0));
+    xboxButtonX.whenReleased(new ActivateFlyWheel(0)); */
 
-    // Climb
-    xboxButtonA.whileHeld(new Climb(.25));
-    xboxButtonY.whileHeld(new Climb(-.25));
+    // Climb Down
+    xboxButtonA.whenPressed(new ActivateClimb(.5));
+   xboxButtonA.whenReleased(new ActivateClimb(0));
+    
+   // Climb UP
+    xboxButtonY.whenPressed(new ActivateClimb(-.5));
+    xboxButtonY.whenReleased(new ActivateClimb(0));
 
   }
 

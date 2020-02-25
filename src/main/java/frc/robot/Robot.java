@@ -57,8 +57,8 @@ public class Robot extends TimedRobot {
 
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-    System.out.println("Robot Init");
+    //SmartDashboard.putData("Auto choices", m_chooser);
+    System.out.println("Robot Init - NOW");
     RobotMap.init();
   }
 
@@ -76,9 +76,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
-    SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
-    SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
+    //SmartDashboard.putBoolean("F Pistons", RobotMap.frontSolenoid.get());
+    //SmartDashboard.putBoolean("B Pistons", RobotMap.backSolenoid.get());
+    //SmartDashboard.putBoolean("PSI", RobotMap.compressor.getPressureSwitchValue());
   }
 
   /**
@@ -136,7 +136,10 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     driveTrain.driveWithXbox();
-    RobotMap.compressor.stop();
+    // REMOVE BELOW LINE TO ENABLE COMPRESSOR
+    //RobotMap.compressor.stop();
+    flyWheelSystem.flyWheelController();
+    System.out.println(RobotMap.testSolenoid.get());
   }
 
   /**

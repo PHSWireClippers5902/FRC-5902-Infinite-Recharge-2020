@@ -59,8 +59,8 @@ public class DriveTrain extends Subsystem {
 
     double stickX = turnSensitivity * leftStickXValue;
     double stickY = 0;
-    System.out.println("Left Trigger:" + leftTriggerValue);
-    System.out.println("Right Trigger:" + rightTriggerValue);
+   // System.out.println("Left Trigger:" + leftTriggerValue);
+    // System.out.println("Right Trigger:" + rightTriggerValue);
      
     if (rightTriggerValue > 0 && leftTriggerValue > 0) {
       arcadeDrive(0, 0, 0);
@@ -75,7 +75,7 @@ public class DriveTrain extends Subsystem {
 
     }
 
-    System.out.println("StickX: " + stickX + ", StickY: " + stickY);
+    //System.out.println("StickX: " + stickX + ", StickY: " + stickY);
     arcadeDrive(stickY, stickX, driveSpeed); 
 
   }

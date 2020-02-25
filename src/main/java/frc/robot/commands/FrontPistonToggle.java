@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 //This code toggles on and off the two front pistons with a toggleWhenPressed button in OI
 public class FrontPistonToggle extends Command {
@@ -13,12 +14,16 @@ public class FrontPistonToggle extends Command {
   @Override
   protected void initialize() {
     Robot.pneumaticSystem.offFrontPistons();
+    System.out.println("Front Pistons Init");
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.pneumaticSystem.onFrontPistons();
+    //RobotMap.frontSolenoid.set(true);
+    System.out.println("Front Pistons Execute");
   }
 
   // Make this return true when this Command no longer needs to run execute()

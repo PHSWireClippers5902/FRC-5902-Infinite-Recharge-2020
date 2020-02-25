@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Compressor;
@@ -15,16 +16,22 @@ public class RobotMap {
     public static WPI_TalonSRX driveMainLeft = new WPI_TalonSRX(2);
     public static WPI_TalonSRX driveFollowRight = new WPI_TalonSRX(3);
     public static WPI_TalonSRX driveFollowLeft = new WPI_TalonSRX(4);
+    public static WPI_TalonSRX climbMotorLeft = new WPI_TalonSRX(5);
+    public static WPI_TalonSRX climbMotorRight = new WPI_TalonSRX(6);
+    
     public static WPI_TalonSRX flyWheel = new WPI_TalonSRX(8);
-    // NEED TO EDIT Talon Assignment for Climb
-    public static WPI_TalonSRX climb = new WPI_TalonSRX(6);
+    
+    public static SpeedControllerGroup climbMotors = new SpeedControllerGroup(climbMotorRight, climbMotorLeft);
     public static DifferentialDrive diffDrive = new DifferentialDrive(driveMainLeft, driveMainRight);
     public static SpeedController lightsR;
     public static SpeedController lightsL;
     // Pneumatics
     public static Compressor compressor;
-    public static SolenoidWrapper frontSolenoid;
-    public static SolenoidWrapper backSolenoid;
+    public static Solenoid frontSolenoid;
+    public static Solenoid backSolenoid;
+    public static Solenoid topSolenoid;
+    public static Solenoid testSolenoid;
+
     public static Ultrasonic ultra;
 
     // SERVO THING
@@ -41,17 +48,25 @@ public class RobotMap {
         driveFollowRight.configOpenloopRamp(1);
         flyWheel.configOpenloopRamp(1);
         flyWheel.setSafetyEnabled(true);
-        climb.configOpenloopRamp(1);
-        climb.setSafetyEnabled(true);
+        climbMotorLeft.configOpenloopRamp(.5);
+        climbMotorLeft.setSafetyEnabled(true);
+        climbMotorRight.configOpenloopRamp(.5);
+        climbMotorRight.setSafetyEnabled(true);
+
         // Lights
         lightsR = new Spark(0);
         lightsL = new Spark(3);
         // Create pneumaticSystem
-        compressor = new Compressor(0);
-        frontSolenoid = new SolenoidWrapper(1);
-        backSolenoid = new SolenoidWrapper(0);
+        compressor = new Compressor(20);
+        frontSolenoid = new Solenoid(1);
+        backSolenoid = new Solenoid(0);
+        topSolenoid = new Solenoid(2);
+        testSolenoid = new Solenoid(6);
         frontSolenoid.set(false);
         backSolenoid.set(false);
+        topSolenoid.set(false);
+        testSolenoid.set(true);
+        
         // SERVO THING
         // coolServo = new Servo(0);
     }

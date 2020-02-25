@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
 
-public class Climb extends Command {
+public class ActivateClimb extends Command {
 
   public double speed;
 
-  public Climb(double speed) {
+  public ActivateClimb(double speed) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.climbSystem);
     this.speed = speed;
@@ -35,6 +35,7 @@ public class Climb extends Command {
   @Override
   protected void end() {
     Robot.climbSystem.stop();
+    System.out.println("Activate Climb End Called");
   }
 
   // Called when another command which requires one or more of the same

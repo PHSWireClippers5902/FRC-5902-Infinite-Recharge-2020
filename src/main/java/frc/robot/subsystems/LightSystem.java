@@ -19,7 +19,7 @@ public class LightSystem extends Subsystem {
     y += .001;
     RobotMap.lightsR.set(y);
     RobotMap.lightsL.set(y);
-    System.out.println(y);
+    //System.out.println(y);
   }
 
   public void getAllianceColor() {

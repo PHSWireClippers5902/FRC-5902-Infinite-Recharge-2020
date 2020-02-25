@@ -1,7 +1,11 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.ActivateFlyWheel;
+import frc.robot.Robot;
+import frc.robot.OI;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class FlyWheelSystem extends Subsystem {
@@ -36,5 +40,23 @@ public class FlyWheelSystem extends Subsystem {
       } else {
          return false;
       }
+   }
+
+   public void flyWheelController(){
+
+      double stickYPOS;
+      stickYPOS= Robot.oi.logitech.getY(Hand.kLeft);
+
+      if (RobotMap.compressor.enabled() == true) {
+         RobotMap.compressor.stop();
+         System.out.println("Comp DISABLED FlyWheelSystem");
+      } 
+      flyWheel.set(stickYPOS);
+      System.out.println(stickYPOS);
+
+      if (stickYPOS <= 0.008 && stickYPOS >= -.008) {
+         RobotMap.compressor.start();
+         System.out.println("Comp ENABLED FlyWheelSystem");
+      } 
    }
 }
