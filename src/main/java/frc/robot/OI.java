@@ -83,7 +83,8 @@ public class OI {
      */
     // Pistons
     logitechRightBumper.toggleWhenPressed(new FrontPistonToggle());
-    logitechRightBumper.toggleWhenPressed(new BackPistonToggle());
+    logitechLeftBumper.toggleWhenPressed(new BackPistonToggle());
+
     logitechButtonB.whenPressed(new AllPistonsOff());
     // FlyWheel
     xboxButtonB.whenPressed(new ActivateFlyWheel(-.6));

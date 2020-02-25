@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
     Robot.lightSystem.getAllianceColor();
+    RobotMap.compressor.stop();
   }
 
   /**
@@ -136,7 +137,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     driveTrain.driveWithXbox();
-    RobotMap.compressor.stop();
+    
   }
 
   /**
