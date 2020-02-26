@@ -14,7 +14,6 @@ import frc.robot.commands.AllPistonsOff;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BackPistonToggle;
 import frc.robot.commands.ActivateClimb;
-import frc.robot.commands.ActivateClimb;
 import frc.robot.commands.ActivateFlyWheel;
 import frc.robot.commands.FrontPistonToggle;
 import frc.robot.commands.TopPistonToggle;
