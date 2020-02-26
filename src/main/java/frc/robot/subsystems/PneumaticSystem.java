@@ -33,6 +33,14 @@ public class PneumaticSystem extends Subsystem {
     RobotMap.backSolenoid.set(false);
   }
 
+  public void onTopPistons() {
+    RobotMap.topSolenoid.set(true);
+  }
+
+  public void offTopPistons() {
+    RobotMap.topSolenoid.set(false);
+  }
+
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new AllPistonsOff());

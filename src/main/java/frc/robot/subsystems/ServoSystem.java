@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.Robot;
+import frc.robot.commands.ServoToggle;
 /**
  * Manages the movement of Lead and Following motor controllers
  */
@@ -17,6 +18,7 @@ public class ServoSystem extends Subsystem {
 
   @Override
   protected void initDefaultCommand() {
+    setDefaultCommand(new ServoToggle(0));
   }
 
   @Override
@@ -30,11 +32,7 @@ public class ServoSystem extends Subsystem {
   // SERVO THING - just for checking servos - when b button is pressed, sets
   // angle to an int degrees and if x button is pressed sets the angle to -degrees
   public void stangle(int degrees) {
-    /*
-     * if (Robot.oi.getXbox().getBButtonPressed()) {
-     * RobotMap.coolServo.setAngle(degrees); } else if
-     * (Robot.oi.getXbox().getXButtonPressed()) { RobotMap.coolServo.setAngle(-1 *
-     * degrees); }
-     */}
+    RobotMap.coolServo.setAngle(degrees);
+    }
 
 }

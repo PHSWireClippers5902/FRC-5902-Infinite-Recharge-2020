@@ -2,27 +2,26 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.*;
+import frc.robot.RobotMap;
 
-public class ActivateClimb extends Command {
-
-  public double speed;
-
-  public ActivateClimb(double speed) {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.climbSystem);
-    this.speed = speed;
+//This code toggles on and off the two front pistons with a toggleWhenPressed button in OI
+public class TopPistonToggle extends Command {
+  public TopPistonToggle() {
+    requires(Robot.pneumaticSystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.pneumaticSystem.offTopPistons();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climbSystem.up(speed);
+    Robot.pneumaticSystem.onTopPistons();
+    //RobotMap.frontSolenoid.set(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -33,16 +32,13 @@ public class ActivateClimb extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-    Robot.climbSystem.stop();
-    System.out.println("Activate Climb End Called");
-    
+  protected void end() {      
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.climbSystem.stop();
+    end();
   }
 }
