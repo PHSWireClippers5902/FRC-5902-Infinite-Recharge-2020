@@ -65,7 +65,6 @@ public class RobotMap {
         backSolenoid.set(false);
         topSolenoid.set(false);
 
-        
         // SERVO THING
         coolServo = new Servo(1);
     }

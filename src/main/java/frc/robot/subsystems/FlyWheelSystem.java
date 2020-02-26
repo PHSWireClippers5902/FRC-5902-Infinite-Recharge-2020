@@ -12,7 +12,7 @@ public class FlyWheelSystem extends Subsystem {
 
    public double flyWheelSpeed;
 
-   // check if flyWheel needs to be capital
+   // check if flyWheel needs to capital
    public final WPI_TalonSRX flyWheel = RobotMap.flyWheel;
 
    @Override
@@ -42,23 +42,17 @@ public class FlyWheelSystem extends Subsystem {
       }
    }
 
-   public void flyWheelController(){
+   public void flyWheelController() {
 
       double stickYPOS;
-      stickYPOS= Robot.oi.logitech.getY(Hand.kLeft);
-    
+      stickYPOS = Robot.oi.logitech.getY(Hand.kLeft);
 
-      if (RobotMap.compressor.enabled() == true) {
-         RobotMap.compressor.stop();
-    
-      } 
-      flyWheel.set(stickYPOS);
-      System.out.println(stickYPOS);
+      if (stickYPOS <= 0.008 && stickYPOS >= -.008 && RobotMap.compressor.enabled() == false) {
+         flyWheel.set(0);
 
-      if (stickYPOS <= 0.008 && stickYPOS >= -.008) {
-         RobotMap.compressor.start();
-     
-      } 
-      
+      } else if (RobotMap.compressor.enabled() == true) {
+         flyWheel.set(stickYPOS);
+         System.out.println(stickYPOS);
+      }
    }
 }

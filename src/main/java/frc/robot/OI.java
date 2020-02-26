@@ -17,6 +17,7 @@ import frc.robot.commands.ActivateClimb;
 import frc.robot.commands.ActivateFlyWheel;
 import frc.robot.commands.FrontPistonToggle;
 import frc.robot.commands.TopPistonToggle;
+import frc.robot.commands.ServoToggle;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -47,8 +48,8 @@ public class OI {
   private JoystickButton logitechButtonX;
   private JoystickButton logitechLeftBumper;
   private JoystickButton logitechRightBumper;
-  private JoystickButton logitechDPadUp;
-  private JoystickButton logitechDPadDown;
+  private JoystickButton logitechLeftStickPush;
+  private JoystickButton logitechRightStickPush;
   private JoystickButton logitechDPadLeft;
   private JoystickButton logitechDPadRight;
 
@@ -78,7 +79,9 @@ public class OI {
     logitechButtonX = new JoystickButton(logitech, 3);
     logitechLeftBumper = new JoystickButton(logitech, 5);
     logitechRightBumper = new JoystickButton(logitech, 6);
-    // Need to figure out how to assign numbers
+    logitechLeftStickPush = new JoystickButton(logitech, 9); 
+    logitechRightStickPush = new JoystickButton(logitech, 10);
+    // Need to figure out how to assign numbers to dpad. Currently unable to make dpads into a JoystickButton
     /*
      * logitechDPadUp = new JoystickButton(logitech, 1); logitechDPadDown = new
      * JoystickButton(logitech, 1); logitechDPadLeft = new JoystickButton(logitech,
@@ -89,17 +92,18 @@ public class OI {
     logitechLeftBumper.toggleWhenPressed(new BackPistonToggle());
     logitechButtonX.toggleWhenPressed(new TopPistonToggle());
     logitechButtonB.whenPressed(new AllPistonsOff());
-    
 
     // Climb Up
     logitechButtonY.whenPressed(new ActivateClimb(-.5));
-    logitechButtonY.whenReleased(new ActivateClimb(0.0)); //Once stop Pneumatic is fired value has to be set to zero
-    
-   // Climb Down
-   logitechButtonA.whenPressed(new ActivateClimb(.5));
-   logitechButtonA.whenReleased(new ActivateClimb(0.0)); //Once stop Pneumatic is fired value has to be set to zero
+    logitechButtonY.whenReleased(new ActivateClimb(-0.11)); // Once stop Pneumatic is fired value has to be set to zero
 
+    // Climb Down
+    logitechButtonA.whenPressed(new ActivateClimb(.25));
+    logitechButtonA.whenReleased(new ActivateClimb(0.0)); // Once stop Pneumatic is fired value has to be set to zero
 
+    // Servos
+    logitechLeftStickPush.whenPressed(new ServoToggle(90));
+    logitechRightStickPush.whenPressed(new ServoToggle(0));
 
   }
 

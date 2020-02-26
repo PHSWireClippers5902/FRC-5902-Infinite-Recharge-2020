@@ -124,7 +124,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    
     Robot.lightSystem.getAllianceColor();
     RobotMap.compressor.start();
     RobotMap.coolServo.setPosition(.5);  // set position .5 is 90 degrees  
@@ -135,10 +134,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-         Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
     driveTrain.driveWithXbox();
-    // REMOVE BELOW LINE TO ENABLE COMPRESSOR
-    //RobotMap.compressor.stop();
     flyWheelSystem.flyWheelController();
   
   }
