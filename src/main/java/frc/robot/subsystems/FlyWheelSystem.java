@@ -46,13 +46,18 @@ public class FlyWheelSystem extends Subsystem {
 
       double stickYPOS;
       stickYPOS = Robot.oi.logitech.getY(Hand.kLeft);
-
-      if (stickYPOS <= 0.008 && stickYPOS >= -.008 && RobotMap.compressor.enabled() == false) {
-         flyWheel.set(0);
-
-      } else if (RobotMap.compressor.enabled() == true) {
-         flyWheel.set(stickYPOS);
+      if(stickYPOS >= 0.07 || stickYPOS <= -0.07 ){
+         RobotMap.compressor.stop();
          System.out.println(stickYPOS);
+         System.out.println("I stopped");
+         flyWheel.set(stickYPOS);
+   }else if(!RobotMap.compressor.enabled()){
+         RobotMap.compressor.start();
+         flyWheel.set(0);
+         System.out.println("I Start");
+      }else{
+         flyWheel.set(0);
       }
+
    }
 }

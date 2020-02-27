@@ -43,6 +43,6 @@ public class PneumaticSystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new AllPistonsOff());
+    //setDefaultCommand(new AllPistonsOff());
   }
 }

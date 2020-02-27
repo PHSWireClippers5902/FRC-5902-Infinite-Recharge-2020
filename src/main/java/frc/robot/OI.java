@@ -11,10 +11,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.AllPistonsOff;
-import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.BackPistonToggle;
 import frc.robot.commands.ActivateClimb;
-import frc.robot.commands.ActivateFlyWheel;
 import frc.robot.commands.FrontPistonToggle;
 import frc.robot.commands.TopPistonToggle;
 import frc.robot.commands.ServoToggle;
@@ -94,16 +92,17 @@ public class OI {
     logitechButtonB.whenPressed(new AllPistonsOff());
 
     // Climb Up
-    logitechButtonY.whenPressed(new ActivateClimb(-.5));
+    logitechButtonY.whenPressed(new ActivateClimb(-.6));
     logitechButtonY.whenReleased(new ActivateClimb(-0.11)); // Once stop Pneumatic is fired value has to be set to zero
 
     // Climb Down
-    logitechButtonA.whenPressed(new ActivateClimb(.25));
+    logitechButtonA.whenPressed(new ActivateClimb(-.06));
     logitechButtonA.whenReleased(new ActivateClimb(0.0)); // Once stop Pneumatic is fired value has to be set to zero
 
     // Servos
-    logitechLeftStickPush.whenPressed(new ServoToggle(90));
-    logitechRightStickPush.whenPressed(new ServoToggle(0));
+    xboxButtonX.whenPressed(new ServoToggle(90));
+    xboxButtonY.whenPressed(new ServoToggle(20));
+
 
   }
 

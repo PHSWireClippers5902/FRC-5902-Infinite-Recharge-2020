@@ -18,7 +18,7 @@ public class ServoSystem extends Subsystem {
 
   @Override
   protected void initDefaultCommand() {
-    setDefaultCommand(new ServoToggle(0));
+    //setDefaultCommand(new ServoToggle(0));
   }
 
   @Override

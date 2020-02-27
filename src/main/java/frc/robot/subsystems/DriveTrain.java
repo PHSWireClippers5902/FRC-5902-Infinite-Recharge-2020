@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
     // Setting motor control followers
     RobotMap.driveFollowLeft.follow(RobotMap.driveMainLeft);
     RobotMap.driveFollowRight.follow(RobotMap.driveMainRight);
-    setDefaultCommand(new ArcadeDrive());
+    //setDefaultCommand(new ArcadeDrive());
   }
 
   public void arcadeDrive(double stickY_Axis, double stickX_Axis, double speed) {
