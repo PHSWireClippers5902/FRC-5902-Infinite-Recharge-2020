@@ -100,8 +100,8 @@ public class OI {
     logitechButtonA.whenReleased(new ActivateClimb(0.0)); // Once stop Pneumatic is fired value has to be set to zero
 
     // Servos
-    xboxButtonX.whenPressed(new ServoToggle(90));
-    xboxButtonY.whenPressed(new ServoToggle(20));
+    xboxButtonX.whenPressed(new ServoToggle(90));//down
+    xboxButtonY.whenPressed(new ServoToggle(20));//up
 
 
   }
