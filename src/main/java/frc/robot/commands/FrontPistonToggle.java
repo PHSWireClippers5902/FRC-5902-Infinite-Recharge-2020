@@ -14,7 +14,6 @@ public class FrontPistonToggle extends Command {
   @Override
   protected void initialize() {
     Robot.pneumaticSystem.offFrontPistons();
-    System.out.println("Front Pistons Init");
 
   }
 
@@ -23,7 +22,6 @@ public class FrontPistonToggle extends Command {
   protected void execute() {
     Robot.pneumaticSystem.onFrontPistons();
     //RobotMap.frontSolenoid.set(true);
-    System.out.println("Front Pistons Execute");
   }
 
   // Make this return true when this Command no longer needs to run execute()

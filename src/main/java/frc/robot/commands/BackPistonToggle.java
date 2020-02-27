@@ -15,7 +15,6 @@ public class BackPistonToggle extends Command {
   @Override
   protected void initialize() {
     Robot.pneumaticSystem.offBackPistons();
-    System.out.println("Back Pistons Init");
 
   }
 
@@ -23,7 +22,6 @@ public class BackPistonToggle extends Command {
   @Override
   protected void execute() {
     Robot.pneumaticSystem.onBackPistons();
-    System.out.println("Back Pistons Execute");
 
   }
 

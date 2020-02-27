@@ -19,7 +19,7 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.FlyWheelSystem;
 import frc.robot.subsystems.ServoSystem;
 import frc.robot.subsystems.PneumaticSystem;
-
+import edu.wpi.first.wpilibj.Timer;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
   public static ClimbSystem climbSystem;
   public static LightSystem lightSystem;
   public static PneumaticSystem pneumaticSystem;
+  private double startTime;
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -46,6 +47,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    
     
     pneumaticSystem = new PneumaticSystem();
     driveTrain = new DriveTrain();
@@ -60,6 +63,8 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putData("Auto choices", m_chooser);
     System.out.println("Robot Init - NOW");
     RobotMap.init();
+    RobotMap.topSolenoid.set(false);
+    
   }
 
   /**
@@ -104,6 +109,7 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     System.out.println("Auto selected: " + m_autoSelected);
     Robot.lightSystem.getAllianceColor();
+    startTime = Timer.getFPGATimestamp();
   }
 
   /**
@@ -111,6 +117,26 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+
+    double time = Timer.getFPGATimestamp();
+    if (time - startTime < 1){//turn 180
+      RobotMap.diffDrive.arcadeDrive(0.0, 0.62, true);
+    }else if(time - startTime < 2.8){//foward 9 ish ft
+      RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
+    }else if(time - startTime < 5){//shoot balls
+      RobotMap.flyWheel.set(0.5);
+    }else if(time - startTime < 7){//back straight out
+      RobotMap.flyWheel.set(0);
+      RobotMap.diffDrive.arcadeDrive(-0.7, 0, true);
+    }
+
+
+
+
+
+
+
+    /*
     switch (m_autoSelected) {
       case kCustomAuto:
         RobotMap.diffDrive.arcadeDrive(oi.getXbox().getY(Hand.kLeft), oi.getXbox().getX(Hand.kLeft));
@@ -124,7 +150,7 @@ public class Robot extends TimedRobot {
           RobotMap.diffDrive.arcadeDrive(0.1, 0);
           break;
         }
-    }
+    } */
 
   }
 

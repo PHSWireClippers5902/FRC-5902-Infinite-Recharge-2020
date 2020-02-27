@@ -14,8 +14,6 @@ public class AllPistonsOff extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("All OFF Pistons Init");
-
 
   }
 
@@ -23,8 +21,6 @@ public class AllPistonsOff extends Command {
   @Override
   protected void execute() {
     Robot.pneumaticSystem.offAllPistons();
-    System.out.println("All OFF Pistons Execute");
-
   }
 
   // Make this return true when this Command no longer needs to run execute()

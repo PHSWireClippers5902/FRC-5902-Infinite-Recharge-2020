@@ -12,6 +12,7 @@ public class PneumaticSystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+
   public void onFrontPistons() {
     RobotMap.frontSolenoid.set(true);
   }
@@ -43,6 +44,6 @@ public class PneumaticSystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new AllPistonsOff());
+  setDefaultCommand(new AllPistonsOff());
   }
 }

@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
+import frc.robot.RobotMap;
 
 public class ActivateClimb extends Command {
 
@@ -17,12 +18,14 @@ public class ActivateClimb extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.climbSystem.up(speed);
+    RobotMap.topSolenoid.set(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()

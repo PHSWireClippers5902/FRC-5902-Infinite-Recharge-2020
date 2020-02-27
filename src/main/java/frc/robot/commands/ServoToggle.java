@@ -23,7 +23,6 @@ public class ServoToggle extends Command {
   @Override
   protected void execute() {
     Robot.servoSystem.stangle(degrees);
-    System.out.println(degrees + "is the degrees");
   }
 
   // Make this return true when this Command no longer needs to run execute()
