@@ -15,7 +15,7 @@ public class ClimbSystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ActivateClimb(0));
+    //setDefaultCommand(new ActivateClimb(0));
   }
 
   public void up(double speed) {
@@ -29,4 +29,5 @@ public class ClimbSystem extends Subsystem {
   public void stop() {
     climbMotors.set(0);
   }
+
 }

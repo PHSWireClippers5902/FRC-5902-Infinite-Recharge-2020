@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
  */
 public class DriveTrain extends Subsystem {
   
-  private double turnSensitivity = 0.9;
+  private double turnSensitivity = 0.65;
   private double driveSpeed = .9;
 
   @Override

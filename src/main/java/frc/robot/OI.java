@@ -85,23 +85,28 @@ public class OI {
      * JoystickButton(logitech, 1); logitechDPadLeft = new JoystickButton(logitech,
      * 1); logitechDPadRight = new JoystickButton(logitech, 1);
      */
+    
+
     // Pistons
     logitechRightBumper.toggleWhenPressed(new FrontPistonToggle());
     logitechLeftBumper.toggleWhenPressed(new BackPistonToggle());
     logitechButtonX.toggleWhenPressed(new TopPistonToggle());
-    logitechButtonB.whenPressed(new AllPistonsOff());
+    logitechRightStickPush.whenPressed(new AllPistonsOff());
+    
 
     // Climb Up
-    logitechButtonY.whenPressed(new ActivateClimb(-.6));
-    logitechButtonY.whenReleased(new ActivateClimb(-0.11)); // Once stop Pneumatic is fired value has to be set to zero
+    logitechButtonY.whenPressed(new ActivateClimb(-.95));
+    logitechButtonY.whenReleased(new ActivateClimb(0)); // Once stop Pneumatic is fired value has to be set to zero
+    logitechButtonB.whenPressed(new ActivateClimb(-.6));
+    logitechButtonB.whenReleased(new ActivateClimb(0));
 
     // Climb Down
-    logitechButtonA.whenPressed(new ActivateClimb(.4));
-    logitechButtonA.whenReleased(new ActivateClimb(0.0)); // Once stop Pneumatic is fired value has to be set to zero
+    logitechButtonA.whenPressed(new ActivateClimb(0.8));
+    logitechButtonA.whenReleased(new ActivateClimb(0)); // Once stop Pneumatic is fired value has to be set to zero
 
     // Servos
-    xboxButtonA.whenPressed(new ServoToggle(90));//down
-    xboxButtonY.whenPressed(new ServoToggle(20));//up
+    xboxButtonA.whenPressed(new ServoToggle(180));//down
+    xboxButtonY.whenPressed(new ServoToggle(18));//up
 
 
   }

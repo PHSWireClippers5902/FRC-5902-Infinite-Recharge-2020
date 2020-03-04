@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Servo;
@@ -41,15 +42,15 @@ public class RobotMap {
         diffDrive.setExpiration(0.1);
         diffDrive.setMaxOutput(1.0);
         diffDrive.setDeadband(0.2);
-        driveMainLeft.configOpenloopRamp(1);
-        driveMainRight.configOpenloopRamp(1);
-        driveFollowLeft.configOpenloopRamp(1);
-        driveFollowRight.configOpenloopRamp(1);
-        flyWheel.configOpenloopRamp(1);
+        driveMainLeft.configOpenloopRamp(0.5);
+        driveMainRight.configOpenloopRamp(0.5);
+        driveFollowLeft.configOpenloopRamp(0.5);
+        driveFollowRight.configOpenloopRamp(0.5);
+        flyWheel.configOpenloopRamp(.25);
         flyWheel.setSafetyEnabled(true);
-        climbMotorLeft.configOpenloopRamp(.5);
+        climbMotorLeft.configOpenloopRamp(0);
         climbMotorLeft.setSafetyEnabled(true);
-        climbMotorRight.configOpenloopRamp(.5);
+        climbMotorRight.configOpenloopRamp(0);
         climbMotorRight.setSafetyEnabled(true);
 
         // Lights

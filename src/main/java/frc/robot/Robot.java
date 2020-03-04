@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.*;
 import frc.robot.RobotMap;
+import frc.robot.commands.TopPistonToggle;
 import frc.robot.subsystems.FlyWheelSystem;
 import frc.robot.subsystems.ServoSystem;
 import frc.robot.subsystems.PneumaticSystem;
@@ -40,6 +41,8 @@ public class Robot extends TimedRobot {
   public static LightSystem lightSystem;
   public static PneumaticSystem pneumaticSystem;
   private double startTime;
+  public static boolean retractOnDisabled;
+  public static boolean disabled;
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -47,9 +50,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-
     
-    
+    disabled = false;
     pneumaticSystem = new PneumaticSystem();
     driveTrain = new DriveTrain();
     servoSystem = new ServoSystem();
@@ -64,6 +66,8 @@ public class Robot extends TimedRobot {
     System.out.println("Robot Init - NOW");
     RobotMap.init();
     RobotMap.topSolenoid.set(false);
+    RobotMap.frontSolenoid.set(false);
+    RobotMap.backSolenoid.set(false);
     
   }
 
@@ -110,6 +114,8 @@ public class Robot extends TimedRobot {
     System.out.println("Auto selected: " + m_autoSelected);
     Robot.lightSystem.getAllianceColor();
     startTime = Timer.getFPGATimestamp();
+    RobotMap.compressor.start();
+    Robot.lightSystem.getAllianceColor();
   }
 
   /**
@@ -119,16 +125,24 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
 
     double time = Timer.getFPGATimestamp();
-    if (time - startTime < 1){//turn 180
-      RobotMap.diffDrive.arcadeDrive(0.0, 0.62, true);
-    }else if(time - startTime < 2.8){//foward 9 ish ft
-      RobotMap.diffDrive.arcadeDrive(0.7, 0, true);
-    }else if(time - startTime < 5){//shoot balls
+    if (time - startTime < 4.5){
+      RobotMap.diffDrive.arcadeDrive(-0.6, 0.0, true);
+    }  else if (time- startTime < 6){
+      RobotMap.compressor.stop();
       RobotMap.flyWheel.set(0.5);
-    }else if(time - startTime < 7){//back straight out
+    } else {
+      RobotMap.compressor.start();
+      RobotMap.flyWheel.set(0);
+    } 
+   
+    /*
+    else if(time - startTime < 5){//shoot balls
+      RobotMap.flyWheel.set(-0.5);
+    }else if(time - startTime < 7){//back s
+      traight out
       RobotMap.flyWheel.set(0);
       RobotMap.diffDrive.arcadeDrive(-0.7, 0, true);
-    }
+    } */
 
 
 
@@ -158,7 +172,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     Robot.lightSystem.getAllianceColor();
     RobotMap.compressor.start();
-    RobotMap.coolServo.setPosition(.5);  // set position .5 is 90 degrees  
+    //RobotMap.coolServo.setPosition(0);  // set position .5 is 90 degrees 
   }
 
   /**
@@ -166,10 +180,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    Scheduler.getInstance().run();
+    Scheduler.getInstance().run(); 
     driveTrain.driveWithXbox();
     flyWheelSystem.flyWheelController();
-  
+    
+   // RobotMap.topSolenoid.set(false);
+    //RobotMap.frontSolenoid.set(false);
+    //RobotMap.backSolenoid.set(false);
   }
   
 
@@ -180,4 +197,12 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
 
   }
+
+  @Override
+  public void disabledInit(){
+    retractOnDisabled = !RobotMap.topSolenoid.get();
+    disabled = true;
+    //System.out.println("disableInit retract " + retractOnDisabled);
+  }
+    
 }

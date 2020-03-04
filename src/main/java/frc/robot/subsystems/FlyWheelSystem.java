@@ -20,8 +20,8 @@ public class FlyWheelSystem extends Subsystem {
    }
 
    public void eject(double speed) {
-      flyWheel.set(-speed);
-      flyWheelSpeed = -speed;
+      flyWheel.set(speed);
+      flyWheelSpeed = speed;
    }
 
    public void intake(double speed) {
@@ -48,7 +48,7 @@ public class FlyWheelSystem extends Subsystem {
       stickYPOS = Robot.oi.logitech.getY(Hand.kLeft);
       if(stickYPOS >= 0.07 || stickYPOS <= -0.07 ){
          RobotMap.compressor.stop();
-         flyWheel.set(stickYPOS);
+         flyWheel.set(-stickYPOS);
    }else if(!RobotMap.compressor.enabled()){
          RobotMap.compressor.start();
          flyWheel.set(0);

@@ -13,7 +13,6 @@ public class TopPistonToggle extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.pneumaticSystem.offTopPistons();
 
   }
 
@@ -21,7 +20,6 @@ public class TopPistonToggle extends Command {
   @Override
   protected void execute() {
     Robot.pneumaticSystem.onTopPistons();
-    //RobotMap.frontSolenoid.set(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -32,13 +30,25 @@ public class TopPistonToggle extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {      
+  protected void end() {  
+   if (Robot.disabled) {
+      if (Robot.retractOnDisabled) {
+        Robot.pneumaticSystem.offTopPistons(); 
+        //System.out.println("TopPiston disable" + Robot.disabled);
+        //System.out.println("TopPiston retract" + Robot.retractOnDisabled);
+      }
+    } else {
+      Robot.pneumaticSystem.offTopPistons(); 
+      //System.out.println("TopPiston2 disable" + Robot.disabled);
+        //System.out.println("TopPiston2 retract" + Robot.retractOnDisabled);
+    }
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+      end();
+    
   }
 }
